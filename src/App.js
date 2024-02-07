@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Singles from './Singles';
+import Header from './Header'
+import {useState, useEffect} from 'react';
+import GlobalStyles from './styles/Global';
+ 
+const App = () => {
 
-function App() {
+  const [singles,setSingles] = useState([]);
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/singles_stats/')
+      .then(res => { return res.json(); })
+      .then(data => { setSingles (data)});
+
+//    .catch(error => console.error('Error fetching data: ', error));
+  }, []
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyles />
+        <Header />
+        <div>
+          {singles && <Singles singles = {singles} /> }
+        </div>
+    </>
   );
 }
 
