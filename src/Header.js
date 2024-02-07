@@ -6,7 +6,7 @@ const Header = () => {
         <StyledHeader>
             <Nav>
                 <Logo src='./images/ivos-logo.svg'  />
-                <h1> IV OF SPADES </h1>
+                <h1>IV OF SPADES ANALYTICS</h1>
             </Nav>      
         </StyledHeader>
     ) 

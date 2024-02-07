@@ -8,13 +8,11 @@ export const StyledHeader = styled.header`
 export const Nav = styled.nav`
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    margin-right: 50px;
-    margin-left: 50px;
+    justify-content: flex-start;
+    margin: 0 50px;
 `
 export const Logo = styled.img`
-    margin-bottom: 10px;
+    margin-right: 10px;
     width: 300px;
     height: auto;
 `

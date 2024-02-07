@@ -1,11 +1,13 @@
 import React, { useState, useEffect} from 'react';
-import { StyledSingles, Container } from './styles/Singles.styled';
+import { SinglesContainer, StyledSingles, List } from './styles/Singles.styled';
 
 const Singles = ({singles}) => {
 
 
   return (
-    <Container>
+    <>
+    <SinglesContainer>
+    <List>
       
       {singles.map((single) => (
     
@@ -17,8 +19,10 @@ const Singles = ({singles}) => {
           </StyledSingles>
           
       ))}
-      
-    </Container>
+    </List>
+    <h1>TOP SONGS PER ARTIST</h1>
+    </SinglesContainer>
+    </>
   );
 }
 
