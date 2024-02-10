@@ -8,7 +8,6 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background: #fe8312;
     
     font-family: 'Poppins', sans-serif;
     font-size: 1.15em;

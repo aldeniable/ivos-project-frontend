@@ -6,6 +6,7 @@ const Singles = ({singles}) => {
 
   return (
     <>
+    <h1>MOST STREAMED TRACKS (ALL-TIME)</h1>
     <SinglesContainer>
     <List>
       
@@ -20,7 +21,6 @@ const Singles = ({singles}) => {
           
       ))}
     </List>
-    <h1>TOP SONGS PER ARTIST</h1>
     </SinglesContainer>
     </>
   );
