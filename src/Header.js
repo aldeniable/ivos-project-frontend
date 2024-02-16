@@ -5,8 +5,15 @@ const Header = () => {
     return (
         <StyledHeader>
             <Nav>
-                <Logo src='./images/ivos-logo.svg'  />
-                <h1>IV OF SPADES ANALYTICS</h1>
+                <a href = "/">IV OF SPADES Analytics</a>
+                <ul>
+                    <li>
+                        <a href = "/topstreams"> Top Streams</a>
+                    </li>
+                    <li>
+                        <a href = "/trending"> Trending</a> 
+                    </li>
+                </ul>
             </Nav>      
         </StyledHeader>
     ) 
