@@ -1,9 +1,20 @@
 import React, { useState, useEffect} from 'react';
-import { TopStreamsContainer, StyledTopStreams, List, Table, TableHeader, TableRow, TableCell} from './styles/TopStreams.styled';
+import { TopStreamsContainer, TopStreamsTitle, StyledTopStreams, List, Table, TableHeader, TableRow, TableCell} from './styles/TopStreams.styled';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Header from './Header'
 import TopStreamsFilter from './TopStreamsFilter'
 import GlobalStyles from './styles/Global';
+import TopStreamsLogo from './images/topstreamslogo.png';
+import ClapClapClap from './images/clapclapclap.jpg';
+import Daisy from './images/daisy.jpg';
+import Grandma from './images/grandma.jpg';
+import HomeworkMachine from './images/homework.jpg';
+import Huminga from './images/huminga.jpg';
+import KosmikIslandDisk from './images/kosmik.jpg';
+import Medisina from './images/medisina.jpg';
+import Pangalan from './images/pangalan.jpg';
+import NoAlbum from './images/orangeera.jpg';
+import NoAlbumZild from './images/zild.jpg';
 
 
 const TopStreams = () => {
@@ -34,24 +45,53 @@ const TopStreams = () => {
     }
   });
 
+  const getAlbumImage = (album) => {
+    switch (album) {
+      case 'CLAPCLAPCLAP!':
+        return ClapClapClap;
+      case 'Grandma':
+        return Grandma;
+      case 'Pangalan:':
+        return Pangalan;
+      case 'Homework Machine':
+        return HomeworkMachine;
+      case 'Huminga':
+        return Huminga;
+      case 'Medisina':
+        return Medisina;
+      case 'Kosmik Island Disk':
+        return KosmikIslandDisk;
+      case 'Daisy': 
+        return Daisy;
+      default:
+        return NoAlbum;
+    }
+  }
+
   return (
     <>
-    <TopStreamsFilter filterSelected = {onFilterSelected}></TopStreamsFilter>
     <TopStreamsContainer>
+    <TopStreamsTitle>
+    <img src = {TopStreamsLogo} alt = "" />
+    <h1>Top Songs by Streams (All-time)</h1>
+    </TopStreamsTitle>
+    <TopStreamsFilter filterSelected = {onFilterSelected}></TopStreamsFilter>
       <Table>
         <thead>
           <TableRow>
-            <TableHeader>Title</TableHeader>
-            <TableHeader>Streams</TableHeader>
-            <TableHeader>Artist</TableHeader>
-            <TableHeader>Album</TableHeader>
+            <TableHeader> </TableHeader>
+            <TableHeader>TITLE</TableHeader>
+            <TableHeader>STREAMS</TableHeader>
+            <TableHeader>ARTIST</TableHeader>
+            <TableHeader>ALBUM</TableHeader>
           </TableRow>
         </thead>
         <tbody>
-          {filteredSingles.map((single) => (
+          {filteredSingles.map((single, index) => (
             <TableRow key={single.singles_stats_id}>
-              <TableCell>{single.title}</TableCell>
-              <TableCell> {single.max_fetch_data_streams}</TableCell>
+              <TableCell>{index + 1}</TableCell>
+              <TableCell> <img src = {getAlbumImage(single.album_name)} alt=""/> {single.title}</TableCell>
+              <TableCell> {single.max_fetch_data_streams.toLocaleString()}</TableCell>
               <TableCell>{single.artist_name}</TableCell>
               <TableCell> {single.album_name}</TableCell>
             </TableRow>
