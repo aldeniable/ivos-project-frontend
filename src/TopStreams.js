@@ -1,9 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { TopStreamsContainer, TopStreamsTitle, StyledTopStreams, List, Table, TableHeader, TableRow, TableCell} from './styles/TopStreams.styled';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Header from './Header'
 import TopStreamsFilter from './TopStreamsFilter'
-import GlobalStyles from './styles/Global';
 import TopStreamsLogo from './images/topstreamslogo.png';
 import ClapClapClap from './images/clapclapclap.jpg';
 import Daisy from './images/daisy.jpg';
@@ -14,7 +11,6 @@ import KosmikIslandDisk from './images/kosmik.jpg';
 import Medisina from './images/medisina.jpg';
 import Pangalan from './images/pangalan.jpg';
 import NoAlbum from './images/orangeera.jpg';
-import NoAlbumZild from './images/zild.jpg';
 
 
 const TopStreams = () => {
@@ -25,7 +21,7 @@ const TopStreams = () => {
     setfilterTxtValue(filterValue);
   }
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/singles_stats/')
+    fetch('http://127.0.0.1:8000/topStreams/')
       .then( res => { return res.json(); } )
       .then( data => { setSingles (data) } );
   }, []
@@ -88,8 +84,8 @@ const TopStreams = () => {
         </thead>
         <tbody>
           {filteredSingles.map((single, index) => (
-            <TableRow key={single.singles_stats_id}>
-              <TableCell>{index + 1}</TableCell>
+            <TableRow key={single.singles_stats_id} isTopTen={index < 10}>
+              <TableCell><indexcell>{index + 1}</indexcell></TableCell>
               <TableCell> <img src = {getAlbumImage(single.album_name)} alt=""/> {single.title}</TableCell>
               <TableCell> {single.max_fetch_data_streams.toLocaleString()}</TableCell>
               <TableCell>{single.artist_name}</TableCell>

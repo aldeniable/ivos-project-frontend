@@ -6,7 +6,9 @@ export const TopStreamsContainer = styled.div`
    align-items: flex-start;
    margin: 50px;
 
-`
+
+   `
+
 export const TopStreamsTitle = styled.div`
     display: flex;
 
@@ -20,10 +22,10 @@ export const TopStreamsTitle = styled.div`
 `
 
 export const StyledTopStreams = styled.div`
-    background-color:#D3D3D3;
-   padding: 16px;
-    margin: 20px;
-   border-radius: 5px;
+  background-color:#D3D3D3;
+  padding: 16px;
+  margin: 20px;
+  border-radius: 5px;
 
     `
 export const List = styled.div`
@@ -45,12 +47,18 @@ export const TableHeader = styled.th`
     background-color: #F5F5F5;
 `
 export const TableRow = styled.tr`
+  font-size: ${(props) => (props.isTopTen ? '20px' : 'initial')};
+  indexcell {
+    font-size: ${(props) => (props.isTopTen ? '75px' : 'initial')};
+    font-weight: ${(props) => (props.isTopTen ? 'bold' : 'initial')};
+    color: ${(props) => (props.isTopTen ? '#008080' : 'initial')};
+  }
   transition: background-color 0.6s ease;
   transition: color 0.3s, font-size 0.3s;
   &:hover {
     background-color: #FFF8DC;
     color: #008080;
-    font-size: 20px;
+    font-size: ${(props) => (props.isTopTen ? '35px' : '20px')}; 
   }
 `
 export const TableCell = styled.td`
@@ -61,4 +69,6 @@ export const TableCell = styled.td`
     width: 50px;
     height: auto;
   }
+
+
 `
