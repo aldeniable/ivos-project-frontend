@@ -45,6 +45,11 @@ export const TableHeader = styled.th`
     text-align: left;
     font-size: 1.4rem;
     background-color: #F5F5F5;
+    img {
+      width: 30px;
+      align-items: center;
+      height: auto;
+    }
 `
 export const TableRow = styled.tr`
   font-size: ${(props) => (props.isTopTen ? '20px' : 'initial')};
@@ -52,6 +57,10 @@ export const TableRow = styled.tr`
     font-size: ${(props) => (props.isTopTen ? '75px' : 'initial')};
     font-weight: ${(props) => (props.isTopTen ? 'bold' : 'initial')};
     color: ${(props) => (props.isTopTen ? '#008080' : 'initial')};
+  }
+  plusstreams {
+    font-weight:bold;
+    color: green;
   }
   transition: background-color 0.6s ease;
   transition: color 0.3s, font-size 0.3s;

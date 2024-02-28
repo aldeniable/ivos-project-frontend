@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { TopStreamsContainer, TopStreamsTitle, StyledTopStreams, List, Table, TableHeader, TableRow, TableCell} from './styles/TopStreams.styled';
 import TopStreamsFilter from './TopStreamsFilter'
-import TopStreamsLogo from './images/topstreamslogo.png';
+import TopTrendingLogo from './images/trending.webp'
 import SpotifyLogo from './images/spotify.png';
 import ClapClapClap from './images/clapclapclap.jpg';
 import Daisy from './images/daisy.jpg';
@@ -14,20 +14,33 @@ import Pangalan from './images/pangalan.jpg';
 import NoAlbum from './images/orangeera.jpg';
 
 
-const TopStreams = () => {
+const TopTrending = () => {
 
   const [singles,setSingles] = useState([]);
+  const [trendingdates,setTrendingDates] = useState([]);
   const [filterTxtValue, setfilterTxtValue] = useState('all');
   function onFilterSelected (filterValue)  {
     setfilterTxtValue(filterValue);
   }
-  useEffect(() => {
-    fetch('http://127.0.0.1:8000/topStreams/')
-      .then( res => { return res.json(); } )
-      .then( data => { setSingles (data) } );
-  }, []
 
-  );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [dataDates, dataSingles] = await Promise.all([
+          fetch('http://127.0.0.1:8000/topTrendingDates/').then(res => res.json()),
+          fetch('http://127.0.0.1:8000/topTrending/').then(res => res.json())
+        ]);
+  
+        setTrendingDates(dataDates);
+        setSingles(dataSingles);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+
   const filteredSingles = singles.filter((single) => {
     if(filterTxtValue === 'IV OF SPADES') {
       return single.artist_name === 'IV OF SPADES';
@@ -69,8 +82,8 @@ const TopStreams = () => {
     <>
     <TopStreamsContainer>
     <TopStreamsTitle>
-    <img src = {TopStreamsLogo} alt = "" />
-    <h1>Top Songs by Streams (All-time)</h1>
+    <img src = {TopTrendingLogo} alt = "" />
+    <h1>Trending Now</h1>
     </TopStreamsTitle>
     <TopStreamsFilter filterSelected = {onFilterSelected}></TopStreamsFilter>
       <Table>
@@ -78,7 +91,7 @@ const TopStreams = () => {
           <TableRow>
             <TableHeader> </TableHeader>
             <TableHeader>TITLE</TableHeader>
-            <TableHeader>STREAMS<img src = {SpotifyLogo} alt = "" /></TableHeader>
+            <TableHeader>STREAMS FROM {trendingdates.Length} <img src = {SpotifyLogo} alt = "" /></TableHeader>
             <TableHeader>ARTIST</TableHeader>
             <TableHeader>ALBUM</TableHeader>
           </TableRow>
@@ -88,7 +101,7 @@ const TopStreams = () => {
             <TableRow key={single.singles_stats_id} isTopTen={index < 10}>
               <TableCell><indexcell>{index + 1}</indexcell></TableCell>
               <TableCell> <img src = {getAlbumImage(single.album_name)} alt=""/> {single.title}</TableCell>
-              <TableCell> {single.max_fetch_data_streams.toLocaleString()}</TableCell>
+              <TableCell><plusstreams> + {single.difference_streams.toLocaleString()}</plusstreams></TableCell>
               <TableCell>{single.artist_name}</TableCell>
               <TableCell> {single.album_name}</TableCell>
             </TableRow>
@@ -100,4 +113,4 @@ const TopStreams = () => {
   );
 }
 
-export default TopStreams;
+export default TopTrending;
