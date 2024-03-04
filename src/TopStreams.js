@@ -78,7 +78,7 @@ const TopStreams = () => {
           <TableRow>
             <TableHeader> </TableHeader>
             <TableHeader>TITLE</TableHeader>
-            <TableHeader>STREAMS<img src = {SpotifyLogo} alt = "" /></TableHeader>
+            <TableHeader>TOTAL STREAMS <img src = {SpotifyLogo} alt = "" /></TableHeader>
             <TableHeader>ARTIST</TableHeader>
             <TableHeader>ALBUM</TableHeader>
           </TableRow>

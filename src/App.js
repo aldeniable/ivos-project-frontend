@@ -4,6 +4,8 @@ import Header from './Header'
 import GlobalStyles from './styles/Global';
 import TopStreams from './TopStreams';
 import TopTrending from './TopTrending';
+import ArtistAnalytics from './ArtistAnalytics';
+
 const App = () => {
 
   return (
@@ -12,7 +14,8 @@ const App = () => {
         <Header />
         <Routes>
           <Route path = "/TopStreams" element = {<TopStreams />} /> 
-          <Route path = "/TopTrending" element = {<TopTrending />} /> 
+          <Route path = "/TopTrending" element = {<TopTrending />} />
+          <Route path = "/ArtistAnalytics" element = {<ArtistAnalytics />} />
         </Routes>
     </>
   );

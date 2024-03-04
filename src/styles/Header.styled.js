@@ -22,6 +22,12 @@ export const StyledHeader = styled.header`
         height: auto;
     }
 
+    vertical-line {
+        border-left: 3px solid #000; /* Adjust the color and thickness as needed */
+        height: 100px; /* Adjust the height as needed */
+        margin: 0 10px; /* Adjust the spacing as needed */
+      }
+
 `
 
 export const Nav = styled.nav`

@@ -83,7 +83,7 @@ const TopTrending = () => {
     <TopStreamsContainer>
     <TopStreamsTitle>
     <img src = {TopTrendingLogo} alt = "" />
-    <h1>Trending Now</h1>
+    <h1>Trending This Month</h1>
     </TopStreamsTitle>
     <TopStreamsFilter filterSelected = {onFilterSelected}></TopStreamsFilter>
       <Table>

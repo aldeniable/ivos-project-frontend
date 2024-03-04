@@ -17,8 +17,9 @@ const Header = () => {
                     <li>
                         <button onClick = {() => handleClick('/TopStreams')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/TopStreams' ? 'bold': 'normal'}}> Top Streams (All-time) </button>
                         <button onClick = {() => handleClick('/TopTrending')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/TopTrending' ? 'bold': 'normal'}}> Trending This Month </button>
-                        <button><Link to = "/TopStreams" style = {{textDecoration: 'none', color: 'black'}}> Top Streams</Link></button>
-
+                        <vertical-line />
+                        <button onClick = {() => handleClick('/ArtistAnalytics')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/ArtistAnalytics' ? 'bold': 'normal'}}> Artist Analytics </button>
+                       
                     </li>
                 </ul>    
             </Nav>    
