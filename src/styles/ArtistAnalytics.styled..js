@@ -45,14 +45,21 @@ export const TableHeader = styled.th`
     padding: 10px;
     border-bottom: 2px solid #ddd;
     text-align: left;
-    font-size: 1.4rem;
-    background-color: #F5F5F5;
+    font-size: ${(props) => (props.sorted ? '1.6rem' : '1.4rem')};
+    background-color: ${(props) => (props.sorted ? '#FFDEAD' : '#F5F5F5')};
+    transition: background-color .6s;
+    cursor: help;
     img {
-      width: 30px;
+      width: 20px;
       align-items: center;
       height: auto;
     }
-
+    &:hover {
+      font-weight: bold;
+      color: #008080;
+      font-size: 1.6rem;
+      transition: font-size .5s;
+    }
 `
 export const TableRow = styled.tr`
   font-size: ${(props) => (props.isTopTen ? '20px' : '20px')};
@@ -84,5 +91,23 @@ export const TableCell = styled.td`
     border-radius: 7px;
   }
 
+`
 
+export const Modal = styled.div`
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 200px;
+padding: 10px;
+background-color: #fff;
+border: 1px solid #ccc;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+z-index: 2;
+
+text {
+  font-size: .85rem;
+  font-weight: light;
+  color: black;
+}
 `

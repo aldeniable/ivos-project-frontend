@@ -83,7 +83,10 @@ const TopTrending = () => {
     <TopStreamsContainer>
     <TopStreamsTitle>
     <img src = {TopTrendingLogo} alt = "" />
-    <h1>Trending This Month</h1>
+    <h1>
+    Trending On{' '}
+    {`${trendingdates[1]?.fetch_dates} to ${trendingdates[0]?.fetch_dates}`}
+    </h1>
     </TopStreamsTitle>
     <TopStreamsFilter filterSelected = {onFilterSelected}></TopStreamsFilter>
       <Table>
@@ -91,7 +94,7 @@ const TopTrending = () => {
           <TableRow>
             <TableHeader> </TableHeader>
             <TableHeader>TITLE</TableHeader>
-            <TableHeader>STREAMS FROM {trendingdates.Length} <img src = {SpotifyLogo} alt = "" /></TableHeader>
+            <TableHeader>STREAMS <img src = {SpotifyLogo} alt = "" /></TableHeader>
             <TableHeader>ARTIST</TableHeader>
             <TableHeader>ALBUM</TableHeader>
           </TableRow>

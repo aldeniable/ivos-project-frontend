@@ -1,16 +1,47 @@
 import React, { useState, useEffect} from 'react';
-import { TopStreamsContainer, TopStreamsTitle, StyledTopStreams, List, Table, TableHeader, TableRow, TableCell} from './styles/ArtistAnalytics.styled..js';
+import { Modal, TopStreamsContainer, TopStreamsTitle, StyledTopStreams, List, Table, TableHeader, TableRow, TableCell} from './styles/ArtistAnalytics.styled..js';
 import ivofspades from './images/ivofspades.jpg';
 import uniquesalonga from './images/uniquesalonga.jpg';
 import zildbenitez from './images/zildbenitez.jpg';
 import blastersilonga from './images/blastersilonga.jpg';
 import artistlogo from './images/artist.png';
-
-
+import sortlogo from './images/sort.png';
+import infologo from './images/INFO.png';
 const ArtistAnalytics = () => {
 
   const [artist,setArtists] = useState([]);
+  const [order, setOrder] = useState("asc");
+  const [clickedColumn, setClickedColumn] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
 
+const handleHover = () => {
+  setIsHovered(true);
+  console.log('Hovered!');
+}
+const handleLeave = () => {
+  setIsHovered(false);
+}
+
+  const sorting = (col) => {
+    if(order==="asc"){
+      const sorted = [...artist].sort((a,b) =>
+        a[col] > b[col] ? 1 : -1
+      );
+      setArtists(sorted);
+      setOrder("dsc");
+      setClickedColumn(col);
+      setIsHovered(true);
+    }
+    if(order==="dsc"){
+      const sorted = [...artist].sort((a,b) =>
+        a[col] < b[col] ? 1 : -1
+      );
+      setArtists(sorted);
+      setOrder("asc");
+      setClickedColumn(col);
+      setIsHovered(true);
+    }
+  }
   useEffect(() => {
     fetch('http://127.0.0.1:8000/artistAnalytics/')
       .then( res => { return res.json(); } )
@@ -46,13 +77,22 @@ const ArtistAnalytics = () => {
           <TableRow>
             <TableHeader> </TableHeader>
             <TableHeader> </TableHeader>
-            <TableHeader>STREAM CONSISTENCY</TableHeader>
-            <TableHeader>TOTAL STREAMS</TableHeader>
-            <TableHeader>TOTAL TRACKS</TableHeader>
-            <TableHeader><smol>1-MILLION MARK</smol></TableHeader>
-            <TableHeader><smol>10-MILLION MARK</smol></TableHeader>
-            <TableHeader><smol>50-MILLION MARK</smol></TableHeader>
-            <TableHeader><smol>100-MILLION MARK</smol></TableHeader>
+            <TableHeader onMouseEnter={handleHover} onMouseLeave = {handleLeave} onClick = {()=>sorting("consistent_fans_score")} sorted={clickedColumn === "consistent_fans_score"} >STREAM CONSISTENCY <img src = {sortlogo} alt = "" /> <img src = {infologo} alt = "" />
+            
+            {isHovered && (
+              <Modal>
+                <text>
+                To rank artists based on the consistency of their streams, the author determined each artist's COEFFICIENT Of VARIATION, which provides a relative measure of dispersion, which compares the consistency of streams.
+                </text>
+              </Modal>
+            )}
+           </TableHeader>
+            <TableHeader onClick = {()=>sorting("total_streams")} sorted={clickedColumn === "total_streams"}>TOTAL STREAMS  <img src = {sortlogo} alt = "" /></TableHeader>
+            <TableHeader onClick = {()=>sorting("song_count")} sorted={clickedColumn === "song_count"}>TOTAL TRACKS  <img src = {sortlogo} alt = "" /></TableHeader>
+            <TableHeader><smol>1-MILLION Streams</smol></TableHeader>
+            <TableHeader><smol>10-MILLION Streams</smol></TableHeader>
+            <TableHeader><smol>50-MILLION Streams</smol></TableHeader>
+            <TableHeader><smol>100-MILLION Streams</smol></TableHeader>
           </TableRow>
         </thead>
         <tbody>
