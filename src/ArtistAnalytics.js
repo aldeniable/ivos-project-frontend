@@ -30,7 +30,6 @@ const handleLeave = () => {
       setArtists(sorted);
       setOrder("dsc");
       setClickedColumn(col);
-      setIsHovered(true);
     }
     if(order==="dsc"){
       const sorted = [...artist].sort((a,b) =>
@@ -39,7 +38,6 @@ const handleLeave = () => {
       setArtists(sorted);
       setOrder("asc");
       setClickedColumn(col);
-      setIsHovered(true);
     }
   }
   useEffect(() => {
@@ -82,7 +80,7 @@ const handleLeave = () => {
             {isHovered && (
               <Modal>
                 <text>
-                To rank artists based on the consistency of their streams, the author determined each artist's COEFFICIENT Of VARIATION, which provides a relative measure of dispersion, which compares the consistency of streams.
+                To rank artists based on the consistency of their streams, COEFFICIENT Of VARIATION was used as the statistical property to provide a relative measure of dispersion, which compares the consistency of streams.
                 </text>
               </Modal>
             )}

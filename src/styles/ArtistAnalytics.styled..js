@@ -48,7 +48,7 @@ export const TableHeader = styled.th`
     font-size: ${(props) => (props.sorted ? '1.6rem' : '1.4rem')};
     background-color: ${(props) => (props.sorted ? '#FFDEAD' : '#F5F5F5')};
     transition: background-color .6s;
-    cursor: help;
+    cursor: default;
     img {
       width: 20px;
       align-items: center;
@@ -95,15 +95,17 @@ export const TableCell = styled.td`
 
 export const Modal = styled.div`
 position: fixed;
-top: 50%;
-left: 50%;
+top: 40%;
+left: 23%;
 transform: translate(-50%, -50%);
 width: 200px;
 padding: 10px;
 background-color: #fff;
 border: 1px solid #ccc;
+border-radius: 10px;
 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 z-index: 2;
+opacity: 0.85;
 
 text {
   font-size: .85rem;

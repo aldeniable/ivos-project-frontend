@@ -84,8 +84,7 @@ const TopTrending = () => {
     <TopStreamsTitle>
     <img src = {TopTrendingLogo} alt = "" />
     <h1>
-    Trending On{' '}
-    {`${trendingdates[1]?.fetch_dates} to ${trendingdates[0]?.fetch_dates}`}
+    Trending ({trendingdates[1]?.fetch_dates} to {trendingdates[0]?.fetch_dates})
     </h1>
     </TopStreamsTitle>
     <TopStreamsFilter filterSelected = {onFilterSelected}></TopStreamsFilter>
