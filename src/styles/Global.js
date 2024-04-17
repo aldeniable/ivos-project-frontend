@@ -7,12 +7,8 @@ export const GlobalStyles = createGlobalStyle`
     font-family: "Bebas Neue", sans-serif;
   }
   
-  body {
-
-    margin: 0;
-  }
-
-  p {
+  contain {
+    display: flex;
   }
 
 

@@ -10,12 +10,10 @@ export const StyledHeader = styled.header`
         border-radius: 200px;
         padding: 30px;
         width: 75px;
-        height: auto;
         transition: border-radius .3s; 
         transition: width .3s;
-        
     }
-    
+
     img:hover {
         border-radius: 50px;
         width: 100px;
@@ -23,9 +21,9 @@ export const StyledHeader = styled.header`
     }
 
     vertical-line {
-        border-left: 3px solid #000; /* Adjust the color and thickness as needed */
-        height: 100px; /* Adjust the height as needed */
-        margin: 0 10px; /* Adjust the spacing as needed */
+        border-left: 3px solid #000;
+        height: 100px; 
+        margin: 0 10px; 
       }
 
 `
@@ -34,20 +32,24 @@ export const Nav = styled.nav`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-
+    width: 100%;
     h1 {
         font-size: 2rem;
         font-family: 'Arial';
-        font-color: black;
+        font-color: blue;
         transition: font-size .3s;
     }
     h1:hover {
         font-size: 2.5rem;
     }
+    buttons {
+        display: flex;
+        justify-content: space-between;
+    }
 
     button {
-        transition: height 2s
-        transition: background 2s;
+        transition: transform 1s ease;
+        transition: background 1s ease;
         font-size: 21px;
         margin: 10px;
         font-family: Arial;
@@ -55,22 +57,23 @@ export const Nav = styled.nav`
         border: none;
     }
     button:hover {
-        background: #EFA02C;
-        height: 100px;  
+        background: #FFDEAD;
+        width: auto;
         border: none;
         font-weight: bold;
+        border-radius: 7px;
+        transform: scale(1.2);
     }
     
     ul {
-        margin: 0 70px;;
         list-style: none;
         display: flex;
-        gap: 100rem;
+
     }
+
     li:hover {
         color: #FFFFFF;
     }
-
 
 
 `
@@ -78,3 +81,4 @@ export const Logo = styled.img`
     width: 100px;
     height: auto;
 `
+

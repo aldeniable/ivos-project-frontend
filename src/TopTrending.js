@@ -55,6 +55,12 @@ const TopTrending = () => {
     }
   });
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { month: 'long', day: 'numeric', year: 'numeric'};
+    return date.toLocaleDateString('en-US', options);
+  };
+
   const getAlbumImage = (album) => {
     switch (album) {
       case 'CLAPCLAPCLAP!':
@@ -84,7 +90,7 @@ const TopTrending = () => {
     <TopStreamsTitle>
     <img src = {TopTrendingLogo} alt = "" />
     <h1>
-    Trending ({trendingdates[1]?.fetch_dates} to {trendingdates[0]?.fetch_dates})
+    Trending ({formatDate(trendingdates[1]?.fetch_dates)} to {formatDate(trendingdates[0]?.fetch_dates)})
     </h1>
     </TopStreamsTitle>
     <TopStreamsFilter filterSelected = {onFilterSelected}></TopStreamsFilter>

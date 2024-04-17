@@ -6,21 +6,20 @@ import GlobalStyles from './styles/Global';
 import TopStreams from './TopStreams';
 import TopTrending from './TopTrending';
 import ArtistAnalytics from './ArtistAnalytics';
+import AboutTheCreator  from './AboutTheCreator';
 
 const App = () => {
-
   return (
     <>
       <GlobalStyles />
         <Header />
-        <div>
-        <SideBar />
-        <Routes>
-          <Route path = "/TopStreams" element = {<TopStreams />} /> 
-          <Route path = "/TopTrending" element = {<TopTrending />} />
-          <Route path = "/ArtistAnalytics" element = {<ArtistAnalytics />} />
-        </Routes>
-        </div>
+            <Routes>
+              <Route path="/TopStreams" element={<TopStreams />} />
+              <Route path="/TopTrending" element={<TopTrending />} />
+              <Route path="/ArtistAnalytics" element={<ArtistAnalytics />} />
+              <Route path ="/AboutTheCreator" element = {<AboutTheCreator/>}/>
+            </Routes>
+
     </>
   );
 }
