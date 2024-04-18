@@ -7,6 +7,7 @@ import TopStreams from './TopStreams';
 import TopTrending from './TopTrending';
 import ArtistAnalytics from './ArtistAnalytics';
 import AboutTheCreator  from './AboutTheCreator';
+import Signup from './Signup';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
               <Route path="/TopTrending" element={<TopTrending />} />
               <Route path="/ArtistAnalytics" element={<ArtistAnalytics />} />
               <Route path ="/AboutTheCreator" element = {<AboutTheCreator/>}/>
+              <Route path ="/Signup" element = {<Signup/>} />
             </Routes>
 
     </>
