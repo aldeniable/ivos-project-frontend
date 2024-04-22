@@ -8,6 +8,7 @@ import TopTrending from './TopTrending';
 import ArtistAnalytics from './ArtistAnalytics';
 import AboutTheCreator  from './AboutTheCreator';
 import Signup from './Signup';
+import Login from './Login';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
               <Route path="/ArtistAnalytics" element={<ArtistAnalytics />} />
               <Route path ="/AboutTheCreator" element = {<AboutTheCreator/>}/>
               <Route path ="/Signup" element = {<Signup/>} />
+              <Route path = "/Login" element = {<Login/>} />
             </Routes>
 
     </>
