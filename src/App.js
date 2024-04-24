@@ -9,6 +9,7 @@ import ArtistAnalytics from './ArtistAnalytics';
 import AboutTheCreator  from './AboutTheCreator';
 import Signup from './Signup';
 import Login from './Login';
+import Posts from './Posts';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
               <Route path ="/AboutTheCreator" element = {<AboutTheCreator/>}/>
               <Route path ="/Signup" element = {<Signup/>} />
               <Route path = "/Login" element = {<Login/>} />
+              <Route path = "/Posts" element = {<Posts/>} />
             </Routes>
 
     </>
