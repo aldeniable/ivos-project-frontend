@@ -31,18 +31,26 @@ const Login = () => {
             const response = await fetch('http://127.0.0.1:8000/login/', {method: 'POST', headers: { 'Content-Type': 'application/json'}, body: JSON.stringify(data)});
 
             if(response.ok){
-                const { user } = await response.json();
-                const token = response.token;
+                const responseData = await response.json(); // Parse the JSON response once
+                const token = responseData.token; // Access the "token" field
+                const user = responseData.user;  // Access the "user" object
                 localStorage.setItem('authToken', token);
+                localStorage.setItem('userID', user["id"]);
+                localStorage.setItem('username', user["username"]);
                 setShowStatus(true);
                 setUsernameStatus(user["username"]);
                 setTimeout(() => {
                     navigateTo('/AboutTheCreator');
-                }, 3000);
+                }, 1000);
+                console.log(token);
+                console.log(user["username"]);
             }else{
                 const user = await response.json();
                 setShowStatus(true);
                 setUsernameStatus(user["username"]);
+                setTimeout(() => {
+                    navigateTo('/TopStreams');
+                }, 1000);
             }
             
         }catch (error) {

@@ -19,7 +19,11 @@ const Header = () => {
     const handleClick = (path) => {
         navigate(path);
     }
-
+    const loggedIn = localStorage.getItem("userID");
+    
+    const handleLogout = () => {
+        localStorage.clear();
+    };
     return (
         <StyledHeader>
             <img src = {ivosLogo} alt="" />  
@@ -42,8 +46,11 @@ const Header = () => {
                           
                             <button onClick = {() => handleClick('/AboutTheCreator')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/AboutTheCreator' ? 'bold': 'normal'}}>  About The Creator </button>
                             <button onClick = {() => handleClick('/Signup')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/Signup' ? 'bold': 'normal'}}>  Sign up </button>
-                            <button onClick = {() => handleClick('/Login')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/Login' ? 'bold': 'normal'}}>  Log in </button>
                             
+                            {!loggedIn ? (
+                            <button onClick = {() => handleClick('/Login')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/Login' ? 'bold': 'normal'}}>  Log in </button>
+                           ) : ( <button onClick={handleLogout}>  Log Out </button> 
+                        ) }
                             </div>
                         </buttons>
                     </li>

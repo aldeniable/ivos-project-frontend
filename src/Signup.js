@@ -35,6 +35,7 @@ const Signup = () => {
                 const { user } = await response.json();
                 const token = response.token;
                 localStorage.setItem('authToken', token);
+                localStorage.setItem('userID', user["id"]);
                 setShowStatus(true);
                 setUsernameStatus(user["username"]);
                 setTimeout(() => {
