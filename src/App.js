@@ -10,6 +10,7 @@ import AboutTheCreator  from './AboutTheCreator';
 import Signup from './Signup';
 import Login from './Login';
 import Posts from './Posts';
+import Timeline from './Timeline';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
               <Route path ="/Signup" element = {<Signup/>} />
               <Route path = "/Login" element = {<Login/>} />
               <Route path = "/Posts" element = {<Posts/>} />
+              <Route path = "/Timeline" element = {<Timeline/>} />
             </Routes>
 
     </>

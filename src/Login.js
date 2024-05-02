@@ -31,25 +31,25 @@ const Login = () => {
             const response = await fetch('http://127.0.0.1:8000/login/', {method: 'POST', headers: { 'Content-Type': 'application/json'}, body: JSON.stringify(data)});
 
             if(response.ok){
-                const responseData = await response.json(); // Parse the JSON response once
-                const token = responseData.token; // Access the "token" field
-                const user = responseData.user;  // Access the "user" object
+                const responseData = await response.json();
+                const token = responseData.token;
+                const user = responseData.user; 
                 localStorage.setItem('authToken', token);
                 localStorage.setItem('userID', user["id"]);
                 localStorage.setItem('username', user["username"]);
                 setShowStatus(true);
-                setUsernameStatus(user["username"]);
+                setUsernameStatus(user["username"]+ " login successful!");
                 setTimeout(() => {
-                    navigateTo('/AboutTheCreator');
+                    navigateTo('/Posts');
                 }, 1000);
                 console.log(token);
                 console.log(user["username"]);
             }else{
                 const user = await response.json();
                 setShowStatus(true);
-                setUsernameStatus(user["username"]);
+                setUsernameStatus("Login failed. Try again!");
                 setTimeout(() => {
-                    navigateTo('/TopStreams');
+                    navigateTo('/Login');
                 }, 1000);
             }
             
@@ -66,7 +66,6 @@ const Login = () => {
                 <br/>
                 <button type = "submit">Login</button>
             </form>
-
             {showStatus && (
                 <div>
                     <p>{usernameStatus}</p>

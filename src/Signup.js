@@ -37,14 +37,14 @@ const Signup = () => {
                 localStorage.setItem('authToken', token);
                 localStorage.setItem('userID', user["id"]);
                 setShowStatus(true);
-                setUsernameStatus(user["username"]);
+                setUsernameStatus(user["username"] + " signup successul!");
                 setTimeout(() => {
-                    navigateTo('/AboutTheCreator');
+                    navigateTo('/Posts');
                 }, 3000);
             }else{
                 const user = await response.json();
                 setShowStatus(true);
-                setUsernameStatus(user["username"]);
+                setUsernameStatus("Signup failed!");
             }
             
         }catch (error) {
@@ -56,7 +56,7 @@ const Signup = () => {
             <form onSubmit = {handleSubmit}>
                 <label> Username: <input type = "text" name = "username" value = {data.username} onChange = {handleChange} /></label>
                 < br/>
-                <label> E-mail: <input type = "email" name = "email" value = {data.email} onChange = {handleChange} /></label>\
+                <label> E-mail: <input type = "email" name = "email" value = {data.email} onChange = {handleChange} /></label>
                 <br/>
                 <label> Password: <input type = "password" name = "password" value = {data.password} onChange = {handleChange} /></label>
                 <br/>

@@ -4,20 +4,24 @@ import styled from 'styled-components'
 export const PostContainer = styled.div`
 
    align-items: flex-start;
-   margin: 50px;
-   border: black;
+   margin: 25px;
+   padding:  10px 10px 10px 10px;
+   background-color: #F0E68C;
+   margin-left: 300px;
+   margin-right: 300px;
+   border-radius: 15px;
+   
+   user {
+    font-style: italic;
+    font-size: 0.85em;
+    font-weight: normal;
+   }
+
    `
 
-export const TopStreamsTitle = styled.div`
-    display: flex;
-
-    img {
-      width: 65px;
-      height: auto;
-    }
-    h1 {
-      font-size: 1.5rem;
-    }
+export const PostInput = styled.div`
+   margin: 30px;
+   margin-left: 300px;
 `
 
 export const StyledTopStreams = styled.div`

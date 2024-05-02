@@ -23,6 +23,7 @@ const Header = () => {
     
     const handleLogout = () => {
         localStorage.clear();
+        navigate('/Login');
     };
     return (
         <StyledHeader>
@@ -40,7 +41,7 @@ const Header = () => {
                             <button onClick = {() => handleClick('/ArtistAnalytics')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/ArtistAnalytics' ? 'bold': 'normal'}}> <ThreePIcon/> Artist Analytics </button>
                             </div>
                             <div>
-                            <button onClick = {() => handleClick('/')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/' ? 'bold': 'normal'}}> Quiz </button>
+                            <button onClick = {() => handleClick('/Timeline')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/Timeline' ? 'bold': 'normal'}}> Timeline </button>
                             <button onClick = {() => handleClick('/Posts')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/Posts' ? 'bold': 'normal'}}> Board </button>
                             <button onClick = {() => handleClick('/')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/' ? 'bold': 'normal'}}> Fan Polls </button>
                           
@@ -50,7 +51,11 @@ const Header = () => {
                             {!loggedIn ? (
                             <button onClick = {() => handleClick('/Login')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/Login' ? 'bold': 'normal'}}>  Log in </button>
                            ) : ( <button onClick={handleLogout}>  Log Out </button> 
-                        ) }
+                            ) }
+                           {!loggedIn ? (
+                            <button onClick = {() => handleClick('/')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/' ? 'bold': 'normal'}}>  My Profile </button>
+                           ) : ( <button onClick={handleLogout}>  My Profile </button> 
+                            ) }
                             </div>
                         </buttons>
                     </li>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { PostContainer } from './styles/Posts.styled';
+import { PostContainer, PostInput } from './styles/Posts.styled';
 
 function getMySQLDate(date) {
   return date.toISOString().slice(0, 19).replace('T', ' '); // Remove 'T' and everything after seconds
@@ -13,6 +13,44 @@ const Posts = () => {
   const [post, setPostContent] = useState('');
   const [showStatus, setShowStatus] = useState(false);
   const [usernameStatus, setUsernameStatus] = useState('');
+  const now = new Date();
+  
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { month: 'long', day: 'numeric', year: 'numeric'};
+    return date.toLocaleDateString('en-US', options);
+  };
+
+
+  function formatTimeDifference(timestamp) {
+    const now = new Date();
+    const diffInSeconds = Math.floor((now - timestamp) / 1000);
+  
+    if (diffInSeconds < 60) {
+      return 'just now';
+    } else if (diffInSeconds < 120) {
+      return '1 minute ago';
+    } else if (diffInSeconds < 3600) {
+      const minutes = Math.floor(diffInSeconds / 60);
+      return `${minutes} minutes ago`;
+    } else if (diffInSeconds < 7200) {
+      return '1 hour ago';
+    } else if (diffInSeconds < 86400) {
+      const hours = Math.floor(diffInSeconds / 3600);
+      return `${hours} hours ago`;
+    } else {
+      const days = Math.floor(diffInSeconds / 86400);
+      if(days < 8){
+        return `${days} days ago`;
+      }
+      else
+      {
+        return formatDate(timestamp);
+      } 
+       
+    }
+  }
+
 
   useEffect(() => {
     fetch('http://127.0.0.1:8000/posts/')
@@ -57,22 +95,25 @@ const Posts = () => {
   return (
     <>
     {userID ? (
-          <div>
+          <PostInput>
           <form onSubmit = {handleSubmit} >
-            <textarea placeholder = 'Post here...' value = {post} onChange = {(e) => setPostContent(e.target.value)}>
-              
+            <textarea rows="5" cols="137" placeholder = 'Post here...' value = {post} onChange = {(e) => setPostContent(e.target.value)}>
             </textarea>
+            <br></br>
             <button type = "submit">Post</button>
           </form>
-        </div>
-    ):(<p>Log in to post.</p>)
+        </PostInput>
+    ):(<PostInput><p>Log in to post.</p></PostInput>)
     }
 
     {posts.map((post) => (
     <PostContainer>
-      <p> by: {post.username} </p>
-      <p> posted on: {post.datePosted} </p>
-      <p> {post.post} </p>
+      {post.post}
+      <br>
+      </br>
+      <br>
+      </br>
+      <user> {post.username}   |    {formatTimeDifference(new Date(post.datePosted))} </user>
     </PostContainer>
     ))}
     </>
