@@ -1,5 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { PostContainer, PostInput } from './styles/Posts.styled';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function getMySQLDate(date) {
   return date.toISOString().slice(0, 19).replace('T', ' '); // Remove 'T' and everything after seconds
@@ -11,10 +13,12 @@ const Posts = () => {
   const userID = localStorage.getItem('userID');
   const username = localStorage.getItem('username')
   const [post, setPostContent] = useState('');
+  const [didLike, setDidLike] = useState(false);
   const [showStatus, setShowStatus] = useState(false);
   const [usernameStatus, setUsernameStatus] = useState('');
+
+
   const now = new Date();
-  
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const options = { month: 'long', day: 'numeric', year: 'numeric'};
@@ -59,7 +63,12 @@ const Posts = () => {
   }, []
   );
 
-  
+  const handleDidLike = (postID, userID) => {
+
+    fetch(`http://127.0.0.1:8000/didLike/${userID}/${postID}`)
+    .then( res => { return res.json(); } )
+    .then( data => { if(data.post_id != null){ setDidLike(true); } else {setDidLike(false)} } );
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,7 +81,6 @@ const Posts = () => {
         setShowStatus(true);
         setUsernameStatus(getMySQLDate(date) + "success");
 
-                // Re-fetch existing posts after successful insertion
                 fetch('http://127.0.0.1:8000/posts/')
                 .then((res) => res.json())
                 .then((data) => {
@@ -114,6 +122,11 @@ const Posts = () => {
       <br>
       </br>
       <user> {post.username}   |    {formatTimeDifference(new Date(post.datePosted))} </user>
+      {
+      handleDidLike(post.idPost, userID)}
+      {!didLike ? ( <FavoriteBorderIcon/>) :  ( <FavoriteIcon/>)
+      }
+     
     </PostContainer>
     ))}
     </>
