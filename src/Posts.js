@@ -13,7 +13,7 @@ const Posts = () => {
   const userID = localStorage.getItem('userID');
   const username = localStorage.getItem('username')
   const [post, setPostContent] = useState('');
-  const [didLike, setDidLike] = useState(false);
+  const [likes, setLikes] = useState([]);
   const [showStatus, setShowStatus] = useState(false);
   const [usernameStatus, setUsernameStatus] = useState('');
 
@@ -54,22 +54,28 @@ const Posts = () => {
        
     }
   }
-
-
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/posts/')
-      .then( res => { return res.json(); } )
-      .then( data => { setPosts (data) } );
-  }, []
-  );
+    const fetchData = async () => {
+      try {
+        const [postsData, likesData] = await Promise.all([
+          fetch('http://127.0.0.1:8000/posts/').then(res => res.json()),
+          fetch(`http://127.0.0.1:8000/didLike/${userID}`).then(res => res.json())
+        ]);
+        const idees = likesData.map((like) => like.post_id);
+        setPosts(postsData);
+        setLikes(idees  || []);
+        console.log(idees);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    fetchData();
+  }, []);
 
-  const handleDidLike = (postID, userID) => {
-
-    fetch(`http://127.0.0.1:8000/didLike/${userID}/${postID}`)
-    .then( res => { return res.json(); } )
-    .then( data => { if(data.post_id != null){ setDidLike(true); } else {setDidLike(false)} } );
+  const handleLiking = async (e) => {
+    
   }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const date = new Date();
@@ -122,11 +128,10 @@ const Posts = () => {
       <br>
       </br>
       <user> {post.username}   |    {formatTimeDifference(new Date(post.datePosted))} </user>
-      {
-      handleDidLike(post.idPost, userID)}
-      {!didLike ? ( <FavoriteBorderIcon/>) :  ( <FavoriteIcon/>)
-      }
-     
+      <br/>
+      <br/>
+      { likes.includes(post.idPost) ? ( <FavoriteIcon onClick = {handleLiking}/>)  : ( <FavoriteBorderIcon onClick = {handleLiking}/>) }
+      <user>{post.like_count}</user>
     </PostContainer>
     ))}
     </>
