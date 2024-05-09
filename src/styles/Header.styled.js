@@ -7,9 +7,9 @@ export const StyledHeader = styled.header`
     transition: background-color 0.3s ease;
 
     img {
-        border-radius: 200px;
-        padding: 30px;
-        width: 75px;
+        border-radius: 10rem;
+        padding: 1rem;
+        max-width: 100%;
         transition: border-radius .3s; 
         transition: width .3s;
     }
@@ -32,7 +32,7 @@ export const Nav = styled.nav`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 100%;
+    max-width: 100%;
     h1 {
         font-size: 2rem;
         font-family: 'Arial';
@@ -77,8 +77,56 @@ export const Nav = styled.nav`
 
 
 `
-export const Logo = styled.img`
-    width: 100px;
-    height: auto;
 `
+.container {
+  max-width: 1536px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
 
+/* 2xl */
+@media (max-width: 1536px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* xl */
+@media (max-width: 1280px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+/* lg */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+/* md */
+@media (max-width: 768px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+/* sm */
+@media (max-width: 640px) {
+  .container {
+    max-width: 475px;
+  }
+}
+
+/* xs */
+@media (max-width: 475px) {
+  .container {
+    width: 100%;
+  }
+}
+
+
+`

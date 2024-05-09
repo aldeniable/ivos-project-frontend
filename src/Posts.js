@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { PostContainer, PostInput } from './styles/Posts.styled';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function getMySQLDate(date) {
@@ -54,27 +55,46 @@ const Posts = () => {
        
     }
   }
-  useEffect(() => {
-    const fetchData = async () => {
+  const fetchData = async () => {
       try {
-        const [postsData, likesData] = await Promise.all([
-          fetch('http://127.0.0.1:8000/posts/').then(res => res.json()),
-          fetch(`http://127.0.0.1:8000/didLike/${userID}`).then(res => res.json())
-        ]);
-        const idees = likesData.map((like) => like.post_id);
-        setPosts(postsData);
-        setLikes(idees  || []);
-        console.log(idees);
+        const calls = [
+          fetch('http://127.0.0.1:8000/posts/').then(res => res.json())
+        ];
+        if(userID){
+          calls.push(fetch(`http://127.0.0.1:8000/didLike/${userID}`).then(res => res.json()))
+        }
+
+        const results = await Promise.all(calls);
+        if(userID) {
+          const idees = results[1].map((like) => like.post_id);
+          setLikes(idees  || []);
+        }
+        setPosts(results[0]);
+        
       } catch (error) {
         console.error('Error fetching data:', error);
       }
-    };
+  };
   
+  useEffect(() => {
     fetchData();
   }, []);
 
-  const handleLiking = async (e) => {
-    
+  const handleLiking = async (e, postID) => {
+    e.preventDefault();
+    try{        
+      const response = await fetch(`http://127.0.0.1:8000/likePost/${userID}/${postID}`, {method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}});
+      await fetchData();
+    }catch (error){
+    }
+  }
+  const handleUnliking = async (e, postID) => {
+    e.preventDefault();
+    try{        
+      const response = await fetch(`http://127.0.0.1:8000/unlikePost/${userID}/${postID}`, {method: 'DELETE', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}});
+      await fetchData();
+    }catch (error){
+    }
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -130,7 +150,8 @@ const Posts = () => {
       <user> {post.username}   |    {formatTimeDifference(new Date(post.datePosted))} </user>
       <br/>
       <br/>
-      { likes.includes(post.idPost) ? ( <FavoriteIcon onClick = {handleLiking}/>)  : ( <FavoriteBorderIcon onClick = {handleLiking}/>) }
+      {userID ? (( likes.includes(post.idPost) ? ( <FavoriteIcon onClick = { (e) => handleUnliking(e, post.idPost)}/>)  : ( <FavoriteBorderIcon onClick =   { (e) => handleLiking(e, post.idPost)}/>) )) : (<FavoriteTwoToneIcon/>)}
+        
       <user>{post.like_count}</user>
     </PostContainer>
     ))}
