@@ -96,7 +96,7 @@ const handleLeave = () => {
         <tbody>
           {artist.map((artist, index) => (
             <TableRow key={artist.artist_id}>
-              <TableCell><indexcell>{index + 1}</indexcell></TableCell>
+              <TableCell><indexcell></indexcell></TableCell>
               <TableCell> <div><img src = {getArtistImage(artist.artist_name)} alt=""/> <div>{artist.artist_name}</div></div></TableCell>
               <TableCell> Rank {artist.consistent_fans_score}</TableCell>
               <TableCell>{artist.total_streams.toLocaleString()}</TableCell>

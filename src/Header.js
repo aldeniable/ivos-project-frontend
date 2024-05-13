@@ -1,4 +1,4 @@
-import { StyledHeader, Nav, button } from './styles/Header.styled'
+import { StyledHeader, Nav, ImageContainer } from './styles/Header.styled'
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import ivosLogo from './images/ivos-logo.jpg';
 
@@ -27,8 +27,10 @@ const Header = () => {
     };
     return (
         <StyledHeader>
-            <img src = {ivosLogo} alt="" />  
             <Nav>
+                <ImageContainer>
+                    <img src = {ivosLogo} alt = ""/>
+                </ImageContainer> 
                 <Link to = "/" style = {{textDecoration: 'none', color: 'black'}} ><h1>IV OF SPADES ANALYTICS</h1></Link>
                 <ul>
 
