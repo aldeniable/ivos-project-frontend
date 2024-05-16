@@ -11,11 +11,13 @@ import Signup from './Signup';
 import Login from './Login';
 import Posts from './Posts';
 import Timeline from './Timeline';
+import { Wrapper } from './styles/App.styled'
 
 const App = () => {
   return (
     <>
       <GlobalStyles />
+      <Wrapper>
         <Header />
             <Routes>
               <Route path="/TopStreams" element={<TopStreams />} />
@@ -27,6 +29,7 @@ const App = () => {
               <Route path = "/Posts" element = {<Posts/>} />
               <Route path = "/Timeline" element = {<Timeline/>} />
             </Routes>
+      </Wrapper>
 
     </>
   );
