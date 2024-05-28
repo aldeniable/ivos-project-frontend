@@ -6,14 +6,14 @@ export const StyledHeader = styled.header`
 `;
 
 export const ImageContainer = styled.div`
-max-width: 20%;
-img {
-  border-radius: 50%;
-  padding: .5em;
-  transition: border-radius 0.3s, width 0.3s;
-  margin-left: 1em;
-  max-width: 50%;
-}
+    max-width: 20%;
+    img {
+    border-radius: 50%;
+    padding: .5em;
+    transition: border-radius 0.3s, width 0.3s;
+    margin-left: 1em;
+    max-width: 50%;
+    }
 `
 export const TitleContainer = styled.h1`
     max-width: 20%;
@@ -61,7 +61,6 @@ export const ListContainer = styled.ul`
         border-radius: .6em;
         transform: scale(1.2);
     }
-
     li:hover {
         color: #FFFFFF;
     }

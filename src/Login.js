@@ -6,6 +6,11 @@ import MoveToInboxIcon from '@mui/icons-material/MoveToInbox';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+
+    const [showStatus, setShowStatus] = useState(false);
+    const [usernameStatus, setUsernameStatus] = useState('');
+    const navigateTo = useNavigate();
+
     const [data, setData] = useState( {
         username: '',
         password: ''
@@ -20,16 +25,10 @@ const Login = () => {
         });
     };
 
-    const [showStatus, setShowStatus] = useState(false);
-    const [usernameStatus, setUsernameStatus] = useState('');
-    const navigateTo = useNavigate();
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const response = await fetch('http://127.0.0.1:8000/login/', {method: 'POST', headers: { 'Content-Type': 'application/json'}, body: JSON.stringify(data)});
-
             if(response.ok){
                 const responseData = await response.json();
                 const token = responseData.token;
@@ -38,12 +37,10 @@ const Login = () => {
                 localStorage.setItem('userID', user["id"]);
                 localStorage.setItem('username', user["username"]);
                 setShowStatus(true);
-                setUsernameStatus(user["username"]+ " login successful!");
+                setUsernameStatus("Login successful for " + user["username"] + "!");
                 setTimeout(() => {
                     navigateTo('/Posts');
                 }, 1000);
-                console.log(token);
-                console.log(user["username"]);
             }else{
                 const user = await response.json();
                 setShowStatus(true);
@@ -52,7 +49,6 @@ const Login = () => {
                     navigateTo('/Login');
                 }, 1000);
             }
-            
         }catch (error) {
         }
     };

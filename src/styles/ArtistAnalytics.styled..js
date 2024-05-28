@@ -1,15 +1,11 @@
 import styled from 'styled-components'
 
-
-export const TopStreamsContainer = styled.div`
-
+export const ArtistAnalyticsContainer = styled.div`
    align-items: flex-start;
    margin: 50px;
-
-
    `
 
-export const TopStreamsTitle = styled.div`
+export const ArtistAnalyticsTitle = styled.div`
     display: flex;
     margin-bottom: 30px;
     img {
@@ -23,24 +19,12 @@ export const TopStreamsTitle = styled.div`
     }
 `
 
-export const StyledTopStreams = styled.div`
-  background-color:#D3D3D3;
-  padding: 16px;
-  margin: 20px;
-  border-radius: 5px;
-
-    `
-export const List = styled.div`
-    
-   width: 20%;
-   justify-content: space-between;
-    
-    `
 export const Table = styled.table`
     width: 100%;
     margin: 10px;
     border-collapse: collapse;
 `
+
 export const TableHeader = styled.th`
     padding: 10px;
     border-bottom: 2px solid #ddd;
@@ -61,6 +45,7 @@ export const TableHeader = styled.th`
       transition: font-size .5s;
     }
 `
+
 export const TableRow = styled.tr`
   font-size: ${(props) => (props.isTopTen ? '20px' : '20px')};
   indexcell {
@@ -81,6 +66,7 @@ export const TableRow = styled.tr`
     font-weight: bold;
   }
 `
+
 export const TableCell = styled.td`
   padding: 10px;
   text-align: left;
@@ -94,22 +80,22 @@ export const TableCell = styled.td`
 `
 
 export const Modal = styled.div`
-position: fixed;
-top: 40%;
-left: 23%;
-transform: translate(-50%, -50%);
-width: 200px;
-padding: 10px;
-background-color: #fff;
-border: 1px solid #ccc;
-border-radius: 10px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-z-index: 2;
-opacity: 0.85;
+  position: fixed;
+  top: 40%;
+  left: 23%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  opacity: 0.85;
 
-text {
-  font-size: .85rem;
-  font-weight: light;
-  color: black;
-}
+  text {
+    font-size: .85rem;
+    font-weight: light;
+    color: black;
+  }
 `
