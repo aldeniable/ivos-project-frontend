@@ -5,7 +5,7 @@ import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function getMySQLDate(date) {
-  return date.toISOString().slice(0, 19).replace('T', ' '); // Remove 'T' and everything after seconds
+  return date.toISOString().slice(0, 19).replace('T', ' ');
 }
 
 const Posts = () => {
