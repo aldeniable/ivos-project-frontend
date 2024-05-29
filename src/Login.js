@@ -42,7 +42,6 @@ const Login = () => {
                     navigateTo('/Posts');
                 }, 1000);
             }else{
-                const user = await response.json();
                 setShowStatus(true);
                 setUsernameStatus("Login failed. Try again!");
                 setTimeout(() => {
@@ -64,7 +63,7 @@ const Login = () => {
             </form>
             {showStatus && (
                 <div>
-                    <p>{usernameStatus}</p>
+                    <p> {usernameStatus} </p>
                 </div>
             )}
         </div>

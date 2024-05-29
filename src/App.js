@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Header from './Header';
-import SideBar from './SideBar';
 import GlobalStyles from './styles/Global';
 import TopStreams from './TopStreams';
 import TopTrending from './TopTrending';

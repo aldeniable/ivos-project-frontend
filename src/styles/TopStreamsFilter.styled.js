@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-
 export const TopStreamsFilterContainer = styled.div`
     width: 15%;
     border-radius: 5px; 
@@ -16,5 +15,4 @@ export const TopStreamsFilterContainer = styled.div`
             background-color: #DDD;
         }
     }
-
 `

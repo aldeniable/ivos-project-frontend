@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { TopStreamsContainer, TopStreamsTitle, StyledTopStreams, List, Table, TableHeader, TableRow, TableCell} from './styles/TopStreams.styled';
+import { TopStreamsContainer, TopStreamsTitle, Table, TableHeader, TableRow, TableCell} from './styles/TopStreams.styled';
 import TopStreamsFilter from './TopStreamsFilter'
 import TopStreamsLogo from './images/topstreamslogo.png';
 import SpotifyLogo from './images/spotify.png';
@@ -18,18 +18,13 @@ const TopStreams = () => {
 
   const [singles,setSingles] = useState([]);
   const [filterTxtValue, setfilterTxtValue] = useState('all');
+
   function onFilterSelected (filterValue)  {
     setfilterTxtValue(filterValue);
   }
-  useEffect(() => {
-    fetch('http://127.0.0.1:8000/topStreams/')
-      .then( res => { return res.json(); } )
-      .then( data => { setSingles (data) } );
-  }, []
 
-  );
   const filteredSingles = singles.filter((single) => {
-    if(filterTxtValue === 'IV OF SPADES') {
+    if (filterTxtValue === 'IV OF SPADES') {
       return single.artist_name === 'IV OF SPADES';
     } else if (filterTxtValue === 'Zild Benitez') {
       return single.artist_name === 'Zild Benitez';
@@ -65,37 +60,43 @@ const TopStreams = () => {
     }
   }
 
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/topStreams/')
+      .then( res => { return res.json(); } )
+      .then( data => { setSingles (data) } );
+  }, [] );
+
   return (
     <>
-    <TopStreamsContainer>
-    <TopStreamsTitle>
-    <img src = {TopStreamsLogo} alt = "" />
-    <h1>Top Songs by Streams (All-time)</h1>
-    </TopStreamsTitle>
-    <TopStreamsFilter filterSelected = {onFilterSelected}></TopStreamsFilter>
-      <Table>
-        <thead>
-          <TableRow>
-            <TableHeader> </TableHeader>
-            <TableHeader>TITLE</TableHeader>
-            <TableHeader>TOTAL STREAMS <img src = {SpotifyLogo} alt = "" /></TableHeader>
-            <TableHeader>ARTIST</TableHeader>
-            <TableHeader>ALBUM</TableHeader>
-          </TableRow>
-        </thead>
-        <tbody>
-          {filteredSingles.map((single, index) => (
-            <TableRow key={single.singles_stats_id} isTopTen={index < 10}>
-              <TableCell><indexcell>{index + 1}</indexcell></TableCell>
-              <TableCell> <img src = {getAlbumImage(single.album_name)} alt=""/> {single.title}</TableCell>
-              <TableCell> {single.max_fetch_data_streams.toLocaleString()}</TableCell>
-              <TableCell>{single.artist_name}</TableCell>
-              <TableCell> {single.album_name}</TableCell>
-            </TableRow>
-          ))}
-        </tbody>
-      </Table>
-    </TopStreamsContainer>
+      <TopStreamsContainer>
+        <TopStreamsTitle>
+          <img src = {TopStreamsLogo} alt = "" />
+          <h1> Top streamed tracks </h1>
+        </TopStreamsTitle>
+        <TopStreamsFilter filterSelected = {onFilterSelected}></TopStreamsFilter>
+          <Table>
+            <thead>
+              <TableRow>
+                <TableHeader> </TableHeader>
+                <TableHeader> Title </TableHeader>
+                <TableHeader> Streams <img src = {SpotifyLogo} alt = "" /></TableHeader>
+                <TableHeader> Artist </TableHeader>
+                <TableHeader> Album </TableHeader>
+              </TableRow>
+            </thead>
+            <tbody>
+              {filteredSingles.map((single, index) => (
+                <TableRow key={single.singles_stats_id} isTopTen={index < 10}>
+                  <TableCell><indexcell> {index + 1} </indexcell></TableCell>
+                  <TableCell><img src = {getAlbumImage(single.album_name)} alt=""/> {single.title} </TableCell>
+                  <TableCell> {single.max_fetch_data_streams.toLocaleString()}</TableCell>
+                  <TableCell> {single.artist_name}</TableCell>
+                  <TableCell> {single.album_name}</TableCell>
+                </TableRow>
+              ))}
+            </tbody>
+          </Table>
+      </TopStreamsContainer>
     </>
   );
 }

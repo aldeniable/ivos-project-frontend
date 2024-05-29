@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-
 export const PostContainer = styled.div`
 
    align-items: flex-start;
@@ -14,8 +13,7 @@ export const PostContainer = styled.div`
     font-size: 0.85em;
     font-weight: normal;
    }
-
-   `
+ `
 
 export const PostInput = styled.div`
    margin: 1rem;

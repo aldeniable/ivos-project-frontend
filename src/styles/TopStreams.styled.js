@@ -1,17 +1,12 @@
 import styled from 'styled-components'
 
-
 export const TopStreamsContainer = styled.div`
-
    align-items: flex-start;
    margin: 50px;
-
-
    `
 
 export const TopStreamsTitle = styled.div`
     display: flex;
-
     img {
       width: 65px;
       height: auto;
@@ -21,19 +16,6 @@ export const TopStreamsTitle = styled.div`
     }
 `
 
-export const StyledTopStreams = styled.div`
-  background-color:#D3D3D3;
-  padding: 16px;
-  margin: 20px;
-  border-radius: 5px;
-
-    `
-export const List = styled.div`
-    
-   width: 20%;
-   justify-content: space-between;
-    
-    `
 export const Table = styled.table`
     width: 100%;
     margin: 10px;
@@ -70,6 +52,7 @@ export const TableRow = styled.tr`
     font-size: ${(props) => (props.isTopTen ? '35px' : '20px')}; 
   }
 `
+
 export const TableCell = styled.td`
   padding: 10px;
   text-align: left;
@@ -78,6 +61,4 @@ export const TableCell = styled.td`
     width: 50px;
     height: auto;
   }
-
-
 `

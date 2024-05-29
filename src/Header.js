@@ -39,8 +39,8 @@ const Header = () => {
                                     <button onClick = {() => handleClick('/ArtistAnalytics')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/ArtistAnalytics' ? 'bold': 'normal'}}> <ThreePIcon/> Artist Analytics </button>
                                 </div>
                                 <div>
-                                    <button onClick = {() => handleClick('/Timeline')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/Timeline' ? 'bold': 'normal'}}> Timeline </button>
-                                    <button onClick = {() => handleClick('/Posts')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/Posts' ? 'bold': 'normal'}}> Board </button>
+                                    <button onClick = {() => handleClick('/Timeline')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/Timeline' ? 'bold': 'normal'}}> The IVOS Timeline </button>
+                                    <button onClick = {() => handleClick('/Posts')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/Posts' ? 'bold': 'normal'}}> Fan Board </button>
                                     <button onClick = {() => handleClick('/AboutTheCreator')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/AboutTheCreator' ? 'bold': 'normal'}}>  About The Creator </button>
                                     <button onClick = {() => handleClick('/Signup')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/Signup' ? 'bold': 'normal'}}>  Sign up </button>  
                                     {!loggedIn ? (

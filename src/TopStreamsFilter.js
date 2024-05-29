@@ -1,8 +1,7 @@
-
 import { TopStreamsFilterContainer} from './styles/TopStreamsFilter.styled';
 
 const TopStreamsFilter = (props) => {
-
+    
     function onFilterChanged(event){
         props.filterSelected(event.target.value)
     }

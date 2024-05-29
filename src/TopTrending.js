@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { TopStreamsContainer, TopStreamsTitle, StyledTopStreams, List, Table, TableHeader, TableRow, TableCell} from './styles/TopStreams.styled';
+import { TopStreamsContainer, TopStreamsTitle, Table, TableHeader, TableRow, TableCell} from './styles/TopStreams.styled';
 import TopStreamsFilter from './TopStreamsFilter'
 import TopTrendingLogo from './images/trending.webp'
 import SpotifyLogo from './images/spotify.png';
@@ -13,33 +13,15 @@ import Medisina from './images/medisina.jpg';
 import Pangalan from './images/pangalan.jpg';
 import NoAlbum from './images/orangeera.jpg';
 
-
 const TopTrending = () => {
 
   const [singles,setSingles] = useState([]);
   const [trendingdates,setTrendingDates] = useState([]);
   const [filterTxtValue, setfilterTxtValue] = useState('all');
+
   function onFilterSelected (filterValue)  {
     setfilterTxtValue(filterValue);
   }
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [dataDates, dataSingles] = await Promise.all([
-          fetch('http://127.0.0.1:8000/topTrendingDates/').then(res => res.json()),
-          fetch('http://127.0.0.1:8000/topTrending/').then(res => res.json())
-        ]);
-  
-        setTrendingDates(dataDates);
-        setSingles(dataSingles);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-  
-    fetchData();
-  }, []);
 
   const filteredSingles = singles.filter((single) => {
     if(filterTxtValue === 'IV OF SPADES') {
@@ -84,39 +66,53 @@ const TopTrending = () => {
     }
   }
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [dataDates, dataSingles] = await Promise.all([
+          fetch('http://127.0.0.1:8000/topTrendingDates/').then(res => res.json()),
+          fetch('http://127.0.0.1:8000/topTrending/').then(res => res.json())
+        ]);
+        setTrendingDates(dataDates);
+        setSingles(dataSingles);
+      } catch (error) { }
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
-    <TopStreamsContainer>
-    <TopStreamsTitle>
-    <img src = {TopTrendingLogo} alt = "" />
-    <h1>
-    Trending ({formatDate(trendingdates[1]?.fetch_dates)} to {formatDate(trendingdates[0]?.fetch_dates)})
-    </h1>
-    </TopStreamsTitle>
-    <TopStreamsFilter filterSelected = {onFilterSelected}></TopStreamsFilter>
-      <Table>
-        <thead>
-          <TableRow>
-            <TableHeader> </TableHeader>
-            <TableHeader>TITLE</TableHeader>
-            <TableHeader>STREAMS <img src = {SpotifyLogo} alt = "" /></TableHeader>
-            <TableHeader>ARTIST</TableHeader>
-            <TableHeader>ALBUM</TableHeader>
-          </TableRow>
-        </thead>
-        <tbody>
-          {filteredSingles.map((single, index) => (
-            <TableRow key={single.singles_stats_id} isTopTen={index < 10}>
-              <TableCell><indexcell>{index + 1}</indexcell></TableCell>
-              <TableCell> <img src = {getAlbumImage(single.album_name)} alt=""/> {single.title}</TableCell>
-              <TableCell><plusstreams> + {single.difference_streams.toLocaleString()}</plusstreams></TableCell>
-              <TableCell>{single.artist_name}</TableCell>
-              <TableCell> {single.album_name}</TableCell>
+      <TopStreamsContainer>
+        <TopStreamsTitle>
+          <img src = {TopTrendingLogo} alt = "" />
+          <h1>
+          Trending ({formatDate(trendingdates[1]?.fetch_dates)} to {formatDate(trendingdates[0]?.fetch_dates)})
+          </h1>
+        </TopStreamsTitle>
+        <TopStreamsFilter filterSelected = {onFilterSelected} ></TopStreamsFilter>
+        <Table>
+          <thead>
+            <TableRow>
+              <TableHeader> </TableHeader>
+              <TableHeader> Title </TableHeader>
+              <TableHeader> Streams <img src = {SpotifyLogo} alt = "" /></TableHeader>
+              <TableHeader> Artist </TableHeader>
+              <TableHeader> Album </TableHeader>
             </TableRow>
-          ))}
-        </tbody>
-      </Table>
-    </TopStreamsContainer>
+          </thead>
+          <tbody>
+            {filteredSingles.map((single, index) => (
+              <TableRow key={single.singles_stats_id} isTopTen={index < 10}>
+                <TableCell><indexcell> {index + 1} </indexcell></TableCell>
+                <TableCell><img src = {getAlbumImage(single.album_name)} alt=""/> {single.title} </TableCell>
+                <TableCell><plusstreams> + {single.difference_streams.toLocaleString()} </plusstreams></TableCell>
+                <TableCell> {single.artist_name} </TableCell>
+                <TableCell> {single.album_name} </TableCell>
+              </TableRow>
+            ))}
+          </tbody>
+        </Table>
+      </TopStreamsContainer>
     </>
   );
 }

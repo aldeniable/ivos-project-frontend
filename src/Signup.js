@@ -6,6 +6,11 @@ import MoveToInboxIcon from '@mui/icons-material/MoveToInbox';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+
+    const [showStatus, setShowStatus] = useState(false);
+    const [usernameStatus, setUsernameStatus] = useState('');
+    const navigateTo = useNavigate();
+    
     const [data, setData] = useState( {
         username: '',
         email: '',
@@ -21,30 +26,24 @@ const Signup = () => {
         });
     };
 
-    const [showStatus, setShowStatus] = useState(false);
-    const [usernameStatus, setUsernameStatus] = useState('');
-    const navigateTo = useNavigate();
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const response = await fetch('http://127.0.0.1:8000/signup/', {method: 'POST', headers: { 'Content-Type': 'application/json'}, body: JSON.stringify(data)});
-
-            if(response.ok){
+            if (response.ok) {
                 const { user } = await response.json();
                 const token = response.token;
                 localStorage.setItem('authToken', token);
                 localStorage.setItem('userID', user["id"]);
                 setShowStatus(true);
-                setUsernameStatus(user["username"] + " signup successul!");
+                setUsernameStatus("Registration successful for " + user["username"] + "!");
                 setTimeout(() => {
                     navigateTo('/Posts');
                 }, 3000);
-            }else{
+            } else {
                 const user = await response.json();
                 setShowStatus(true);
-                setUsernameStatus("Signup failed!");
+                setUsernameStatus("Registration failed. Try again!");
             }
             
         }catch (error) {
