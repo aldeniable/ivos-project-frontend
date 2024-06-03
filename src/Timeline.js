@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
-import Groups3Icon from '@mui/icons-material/Groups3';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 import 'react-vertical-timeline-component/style.min.css';
 
 const Timeline = () => {
@@ -15,14 +15,14 @@ const Timeline = () => {
 
   return (
     <div>
-      <VerticalTimeline lineColor = '#ffa500'>
+      <VerticalTimeline lineColor = '#F0E68C'>
           {timelines.map((timeline) => (
             <VerticalTimelineElement
-              icon = {<Groups3Icon />}
+              icon = {<DateRangeIcon />}
               date = {timeline.date}
-              contentStyle={{ background: '#ffa500', color: '#000000' }}
-              contentArrowStyle={{ borderRight: '7px solid  #ffa500' }}
-              iconStyle={{ background: '#ffa500', color: '#000000' }}
+              contentStyle={{ background: '#F0E68C', color: '#000000' }}
+              contentArrowStyle={{ borderRight: '7px solid  #F0E68C' }}
+              iconStyle={{ background: '#F0E68C', color: '#000000' }}
             >
               <h3 className="vertical-timeline-element-title"> {timeline.title} </h3>
               <p className="vertical-timeline-element-subtitle"> {timeline.deets} </p>

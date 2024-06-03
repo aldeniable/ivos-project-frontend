@@ -3,10 +3,10 @@ import styled from 'styled-components'
 export const PostContainer = styled.div`
 
    align-items: flex-start;
-   padding: 1rem;
+   padding: 1em;
    background-color: #F0E68C;
-   margin: 1rem;
-   border-radius: 1rem;
+   margin: 1em;
+   border-radius: 1em;
    
    user {
     font-style: italic;
@@ -16,5 +16,5 @@ export const PostContainer = styled.div`
  `
 
 export const PostInput = styled.div`
-   margin: 1rem;
+   margin: 1em;
 `

@@ -2,7 +2,12 @@ import styled from 'styled-components'
 
 
 export const AuthenticateUserContainer = styled.div`
-   align-items: flex-start;
-   margin: 50px;
+   max-width: 100%;
+   background-color: gray;
+   divet {
+      justify-content: center;
+      align-items: center;
+   }
+
 `
 
