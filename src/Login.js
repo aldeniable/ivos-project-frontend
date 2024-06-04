@@ -55,21 +55,24 @@ const Login = () => {
 
     return (
         <AuthenticateUserContainer>
-            <divet>
+            <formcontainer>
             <form onSubmit = {handleSubmit}>
-                <label> Username: <input type = "text" name = "username" value = {data.username} onChange = {handleChange} /></label>
+                <label> <AssignmentIndIcon/> Username <input type = "text" name = "username" value = {data.username} onChange = {handleChange} /></label>
                 < br/>
                 <br />
-                <label> Password: <input type = "password" name = "password" value = {data.password} onChange = {handleChange} /></label>
+                <label> <LockIcon/> Password <input type = "password" name = "password" value = {data.password} onChange = {handleChange} /></label>
                 <br/>
-                <button type = "submit">Login</button>
+                <br/>
+                <buttondiv>
+                    <button type = "submit">Login</button>
+                </buttondiv>
             </form>
             {showStatus && (
                 <div>
                     <p> {usernameStatus} </p>
                 </div>
             )}
-            </divet>
+            </formcontainer>
         </AuthenticateUserContainer>
 
     );

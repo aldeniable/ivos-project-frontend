@@ -1,6 +1,6 @@
 import { StyledHeader, Nav, ImageContainer, TitleContainer, ListContainer } from './styles/Header.styled'
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import ivosLogo from './images/ivos-logo.jpg';
+import orangeera from './images/orangeera.jpg';
 import AddchartIcon from '@mui/icons-material/Addchart';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import ThreePIcon from '@mui/icons-material/ThreeP';
@@ -26,7 +26,7 @@ const Header = () => {
         <StyledHeader>
             <Nav>
                 <ImageContainer>
-                    <img src = {ivosLogo} alt = ""/>
+                    <img src = {orangeera} alt = ""/>
                 </ImageContainer> 
                 <TitleContainer >
                     <h1  style = {{textDecoration: 'none', color: 'black'}}> IV OF SPADES STATS </h1>

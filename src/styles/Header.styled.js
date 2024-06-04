@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const StyledHeader = styled.header`
+    max-width: 100%;
     background: #ffa500;
     transition: background-color 0.3s ease;
 `;
@@ -9,7 +10,6 @@ export const Nav = styled.nav`
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    max-width: 100%;
 `
 
 export const ImageContainer = styled.div`
@@ -66,7 +66,7 @@ export const ListContainer = styled.ul`
     }
     smoldiv {
         color: gray;
-        font-size: .90em; 
+        font-size: .70em; 
         background: #FFD700;
         border-radius: 1em;
         padding: .2em;
@@ -90,7 +90,7 @@ export const ListContainer = styled.ul`
         border: none;
         font-weight: bold;
         border-radius: .8em;
-        transform: scale(1.34);
+        transform: scale(1.1);
         padding: .3em;
     }
     li:hover {

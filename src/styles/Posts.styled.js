@@ -5,8 +5,9 @@ export const PostContainer = styled.div`
    align-items: flex-start;
    padding: 1em;
    background-color: #F0E68C;
-   margin: 1em;
+   margin: .5em;
    border-radius: 1em;
+   max-width: 900px;
    
    user {
     font-style: italic;
@@ -15,6 +16,18 @@ export const PostContainer = styled.div`
    }
  `
 
+ export const PostsContainer = styled.div`
+   align-items: center;
+   justify-content: center;
+   display: grid;
+ `
+
 export const PostInput = styled.div`
-   margin: 1em;
+   margin-top: 50px;
+   margin-left: 100px;
+   align-items: center;
+   background-color: gray;
+   p {
+      justify-content: center;
+   }
 `

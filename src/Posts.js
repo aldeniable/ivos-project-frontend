@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { PostContainer, PostInput } from './styles/Posts.styled';
+import { PostContainer, PostInput, PostsContainer } from './styles/Posts.styled';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -122,27 +122,28 @@ const Posts = () => {
       ):
       ( <PostInput><p> Log in to post something. </p></PostInput>)
       }
-
-      {posts.map((post) => (
-        <PostContainer>
-          {post.post}
-          <br/>
-          <br/>
-          <user> {post.username}   |    {formatTimeDifference(new Date(post.datePosted))} </user>
-          <br/>
-          <br/>
-          {userID ? (
-            (likes.includes(post.idPost) ?
-              (<FavoriteIcon onClick = {(e) => handleUnliking(e, post.idPost)}/>) 
-              : 
-              (<FavoriteBorderIcon onClick =  {(e) => handleLiking(e, post.idPost)}/>))
-            )
-            :
-            (<FavoriteTwoToneIcon/>)
-          }
-          <user> {post.like_count} </user>
-        </PostContainer>
-      ))}
+      <PostsContainer>
+        {posts.map((post) => (
+          <PostContainer>
+            {post.post}
+            <br/>
+            <br/>
+            <br/>
+            <user> {post.username}   |    {formatTimeDifference(new Date(post.datePosted))} </user>
+            <br/>
+            {userID ? (
+              (likes.includes(post.idPost) ?
+                (<FavoriteIcon onClick = {(e) => handleUnliking(e, post.idPost)}/>) 
+                : 
+                (<FavoriteBorderIcon onClick =  {(e) => handleLiking(e, post.idPost)}/>))
+              )
+              :
+              (<FavoriteTwoToneIcon/>)
+            }
+            <user> {post.like_count} </user>
+          </PostContainer>
+        ))}
+      </PostsContainer>
     </>
   );
 }

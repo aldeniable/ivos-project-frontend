@@ -4,6 +4,7 @@ import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import LockIcon from '@mui/icons-material/Lock';
 import MoveToInboxIcon from '@mui/icons-material/MoveToInbox';
 import { useNavigate } from 'react-router-dom';
+import { AuthenticateUserContainer } from './styles/Login.styled';
 
 const Signup = () => {
 
@@ -51,23 +52,31 @@ const Signup = () => {
     };
 
     return (
-        <div>
-            <form onSubmit = {handleSubmit}>
-                <label> Username: <input type = "text" name = "username" value = {data.username} onChange = {handleChange} /></label>
-                < br/>
-                <label> E-mail: <input type = "email" name = "email" value = {data.email} onChange = {handleChange} /></label>
-                <br/>
-                <label> Password: <input type = "password" name = "password" value = {data.password} onChange = {handleChange} /></label>
-                <br/>
-                <button type = "submit">Signup</button>
-            </form>
 
-            {showStatus && (
-                <div>
-                    <p>{usernameStatus}</p>
-                </div>
-            )}
-        </div>
+        <AuthenticateUserContainer>
+            <formcontainer>
+                <form onSubmit = {handleSubmit}>
+                    <label> E-mail:      <input type = "email" name = "email" value = {data.email} onChange = {handleChange} /></label>
+                    < br/>
+                    < br/>
+                    <label> Username: <input type = "text" name = "username" value = {data.username} onChange = {handleChange} /></label>
+                    <br/>
+                    < br/>
+                    <label> Password: <input type = "password" name = "password" value = {data.password} onChange = {handleChange} /></label>
+                    <br/>
+                    < br/>
+                    <buttondiv>
+                        <button type = "submit">Sign up</button>
+                    </buttondiv>
+                    
+                </form>
+                {showStatus && (
+                    <div>
+                        <p> {usernameStatus} </p>
+                    </div>
+                )}
+            </formcontainer>
+        </AuthenticateUserContainer>
 
     );
 };
