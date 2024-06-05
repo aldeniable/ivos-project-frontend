@@ -23,11 +23,24 @@ export const PostContainer = styled.div`
  `
 
 export const PostInput = styled.div`
-   margin-top: 50px;
-   margin-left: 100px;
-   align-items: center;
-   background-color: gray;
-   p {
+   buttondiv {
+      display: flex;
       justify-content: center;
+      align-items: center;
    }
+   textarea {
+      width: 350px;
+      min-height: 120px;
+      box-sizing: border-box;
+   }
+
+`
+
+export const InputContainer = styled.div`
+   margin-top: 50px;
+   background-color: #FFF8DC;
+   align-items: center;
+   justify-content: center;
+   display: grid;
+   padding: 15px;
 `

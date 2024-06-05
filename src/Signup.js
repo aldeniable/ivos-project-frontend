@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import { } from './styles/Signup.styled';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import LockIcon from '@mui/icons-material/Lock';
 import MoveToInboxIcon from '@mui/icons-material/MoveToInbox';
@@ -56,19 +55,18 @@ const Signup = () => {
         <AuthenticateUserContainer>
             <formcontainer>
                 <form onSubmit = {handleSubmit}>
-                    <label> E-mail:      <input type = "email" name = "email" value = {data.email} onChange = {handleChange} /></label>
+                    <label> <MoveToInboxIcon/> E-mail: <input type = "email" name = "email" value = {data.email} onChange = {handleChange} /></label>
                     < br/>
                     < br/>
-                    <label> Username: <input type = "text" name = "username" value = {data.username} onChange = {handleChange} /></label>
+                    <label> <AssignmentIndIcon/> Username: <input type = "text" name = "username" value = {data.username} onChange = {handleChange} /></label>
                     <br/>
                     < br/>
-                    <label> Password: <input type = "password" name = "password" value = {data.password} onChange = {handleChange} /></label>
+                    <label> <LockIcon/> Password: <input type = "password" name = "password" value = {data.password} onChange = {handleChange} /></label>
                     <br/>
                     < br/>
                     <buttondiv>
                         <button type = "submit">Sign up</button>
                     </buttondiv>
-                    
                 </form>
                 {showStatus && (
                     <div>

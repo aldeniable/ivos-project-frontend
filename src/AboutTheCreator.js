@@ -1,30 +1,51 @@
 import React from 'react'
-import { ParagrpahContainer} from './styles/AboutTheCreator.styled';
-
-
+import { ParagraphContainer, ImageContainer, BodyContainer} from './styles/AboutTheCreator.styled';
+import meme from './images/meme.jpg';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import EmailIcon from '@mui/icons-material/Email';
+import AnimationIcon from '@mui/icons-material/Animation';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import { Menu } from '@mui/material';
+import { MenuBook } from '@material-ui/icons';
 function AboutTheCreator() {
     return (
-        <ParagrpahContainer>
-            Hi! My Name is Alden Robell M. de Loyola, the creator of this website.
+        <>
+        <BodyContainer>
+            <ParagraphContainer>
+                <p>
+                    Hi! My Name is Alden Robell de Loyola, a software developer and a fan of IVoS.
+                    <br/>
+                    <br/>
+                    I'm 23 years old, and have been a fan since In My Prison era. There are a lot of benefits to create this thing but the main drive behind my creation is my years-long inability to channel or express my interest for their music. As a painter paints what he loves, a writer writes what he loves - a developer also creates what he loves.
+                    <br/>
+                    <br/>
+                    I came across an IVOS content on the year 2017, when a friend recommended me their music video of Hey Barbara, who I thought during that time was too pretentious and edgy. One if its dislike counts is from me. I didn't care about them even during the Mundo era, where everyone including me was hyper-obsessed with the song. What truly made me a fan was Zild, whom I'm glad to have witnessed his transition from being the bass guitarist to being the ultimate IVOS frontman. I considered myself a fan during post-Unique era, where I got overwhelmed with the Reinaissance-level talent displayed in In My Prison and Bata, Dahan-Dahan!. And then, CLAPCLAPCLAP! was released, and the rest is history.
+                    <br/>
+                    <br/>
+                    Over the years what I found most interesting among them is the discovery that despite them moving away from the band and making music on their own separate ways, there are things, that cannot be seen in the naked eye, unconsciously bind them- their passion for music, the similarity of the artists they get influences from, their formula of creating art that as a fan you just know emanates from and through a single idea, their similar characteristics and outlook of art and music. I don't know if this is the right term but to me, they are like one entity separated by four bodies. I have long listen to all of their music enough to trust myself this.
+                    <br/>
+                    <br/>
+                    Today, my addiction and interest is still the same as 5 years ago. I consume every music they create, and a significant portion of my character is influenced by their music and their personalities.
+                    <br/>
+                    <br/>
+                </p>
+            </ParagraphContainer>
 
-            I am 23 years old, currently working on my first job as a Software Developer. I have a degree of BS Computer Science in UP Cebu. 
-
-            <div>
-            I created this website for a couple of goals. One, to build a Career Portfolio in hopes of selling myself higher for future companies. Two, to channel my passion and love for the band and the solo members. Three, to prove my undying support for them - so call this my own version of “fan art”. 
-            </div>
-            <div>
-            I first listened to IVOS by a friend who recommended me “Hey Barbara”, who I thought during that time was overly pretentious (so I left a dislike button on its YouTube MV, and is still disliked now). I loved their song Mundo. But In My Prison and Bata! Dahan-Dahan were the songs that made me hooked due to my fascination with how Zild managed to keep the band alive with the departure of such a strong frontman that is Unique. But, I became a solid fan when CLAPCLAPCLAP! was released and when I shuffled through the tracks in YouTube on January 17, 2019, my mind opened, my ears were overwhelmed, I was in heaven. And since then, I never stopped listening to their releases. As time goes by, my appreciation for their musical genius and their authenticity as artists increase. I know ALL of their songs. Even the unreleased tracks of Blaster’s upcoming 2nd solo album!
-            </div>
-            <div>
-            I hope this website finds you entertainment and a sense of pride for being a fan of their works.
-            </div>
-           <div>fb.com/armedloyola</div>
-           <div>twitter.com/aldenrmd</div>
-           <div>instagram.com/aldeniable_</div>
-           <div>letterboxd.com/aldenrmd</div>
-           <div>goodreads.com/aldenrmd</div>
-           <div>Gmail: aldenrmd10@gmail.com</div>
-        </ParagrpahContainer>
+            <ImageContainer>
+                <img src = {meme} alt = ""/>
+                <div>
+                        <a href="https://fb.com/armedloyola"> <FacebookIcon/> armedloyola </a> <br/>
+                        <a href="https://x.com/aldenrmd"> <TwitterIcon/> aldenrmd </a> <br/>
+                        <a href="https://instagram.com/aldeniable_"> <InstagramIcon/> aldeniable_ </a> <br/>
+                        <EmailIcon/> aldenrmd10@gmail.com <br/>
+                        <a href="https://letterboxd.com/aldenrmd"> <AnimationIcon/> Letterboxd [aldenrmd] </a> <br/>
+                        <a href="https://goodreads.com/aldenrmd"> <MenuBookIcon/> Goodreads [aldenrmd] </a> <br/>
+                </div>
+            </ImageContainer>
+        </BodyContainer>
+        </>
     )
 }
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { PostContainer, PostInput, PostsContainer } from './styles/Posts.styled';
+import { PostContainer, PostInput, PostsContainer, InputContainer } from './styles/Posts.styled';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -111,17 +111,20 @@ const Posts = () => {
 
   return (
     <>
-      { userID ? (
-        <PostInput>
-          <form onSubmit = {handleSubmit} >
-              <textarea rows= "5" cols = "137" placeholder = 'Say something and post here...' value = {post} onChange = {(e) => setPostContent(e.target.value)}> </textarea>
-              <br />
-              <button type = "submit"> Post </button>
-            </form>
-        </PostInput>
-      ):
-      ( <PostInput><p> Log in to post something. </p></PostInput>)
-      }
+      <InputContainer>
+          { userID ? (
+            <PostInput>
+              <form onSubmit = {handleSubmit} >
+                  <textarea placeholder = 'Say something and post here...' value = {post} onChange = {(e) => setPostContent(e.target.value)} />
+                  <br />
+                  <buttondiv> <button type = "submit"> Post </button> </buttondiv>
+                </form>
+            </PostInput>
+          ):
+          ( <PostInput><p> Log in to be able to post! </p></PostInput>)
+          }
+      </InputContainer>
+
       <PostsContainer>
         {posts.map((post) => (
           <PostContainer>

@@ -1,17 +1,27 @@
 import styled from 'styled-components'
 
 
-export const ParagrpahContainer = styled.div`
-
+export const ParagraphContainer = styled.div`
    jutify-content: center;
-   margin: 200px;
-   font-size: 1.5rem;
+   font-size: 1.3rem;
    text-align: justify;
    font-color: 'dark gray';
-    
-    div {
-        margin-top: 20px;
-        
-    }
+    max-width:1000px;
+   p {
+        padding: 50px;
+   }
 
+ `
+
+   export const BodyContainer = styled.div`
+    flex-wrap: wrap;
+    display: flex;
+   
+   `
+
+   export const ImageContainer = styled.div`
+   padding: 60px;
+        img {
+        max-width: 400px;
+        }
    `
