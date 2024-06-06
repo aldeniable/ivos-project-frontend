@@ -5,14 +5,22 @@ export const PostContainer = styled.div`
    align-items: flex-start;
    padding: 1em;
    background-color: #F0E68C;
-   margin: .5em;
+   margin: 1.2em;
    border-radius: 1em;
-   max-width: 900px;
+   max-width: 600px;
    
    user {
     font-style: italic;
     font-size: 0.85em;
     font-weight: normal;
+    background-color: #BDB76B;
+    padding: 8px;
+    border-radius: 5px;
+   }
+   likes {
+      font-style: italic;
+      font-size: 0.85em;
+      font-weight: normal;
    }
  `
 

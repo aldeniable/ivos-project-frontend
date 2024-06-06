@@ -143,7 +143,7 @@ const Posts = () => {
               :
               (<FavoriteTwoToneIcon/>)
             }
-            <user> {post.like_count} </user>
+            <likes> {post.like_count} </likes>
           </PostContainer>
         ))}
       </PostsContainer>

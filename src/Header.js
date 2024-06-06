@@ -52,7 +52,7 @@ const Header = () => {
                                     (   <button onClick={handleLogout}>  Log Out </button> 
                                     )}
                                     {!loggedIn ? (
-                                        <button onClick = {() => handleClick('/')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/' ? 'bold': 'normal'}}>  My Profile </button>
+                                        <button onClick = {() => handleClick('/UserProfile')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/' ? 'bold': 'normal'}}>  My Profile </button>
                                     ) :
                                     (   <button onClick={handleLogout}> My Profile </button> 
                                     )}

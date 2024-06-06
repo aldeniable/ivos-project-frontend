@@ -11,6 +11,7 @@ import Login from './Login';
 import Posts from './Posts';
 import Timeline from './Timeline';
 import { Wrapper } from './styles/App.styled'
+import UserProfile from './UserProfile';
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
               <Route path = "/Login" element = {<Login/>} />
               <Route path = "/Posts" element = {<Posts/>} />
               <Route path = "/Timeline" element = {<Timeline/>} />
+              <Route path = "/UserProfile" element = {<UserProfile/>} />
             </Routes>
       </Wrapper>
 

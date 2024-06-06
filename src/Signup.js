@@ -55,13 +55,13 @@ const Signup = () => {
         <AuthenticateUserContainer>
             <formcontainer>
                 <form onSubmit = {handleSubmit}>
-                    <label> <MoveToInboxIcon/> E-mail: <input type = "email" name = "email" value = {data.email} onChange = {handleChange} /></label>
+                    <label> <MoveToInboxIcon/> E-mail: <input style = {{width: '190px'}} type = "email" name = "email" value = {data.email} onChange = {handleChange} /></label>
                     < br/>
                     < br/>
                     <label> <AssignmentIndIcon/> Username: <input type = "text" name = "username" value = {data.username} onChange = {handleChange} /></label>
                     <br/>
                     < br/>
-                    <label> <LockIcon/> Password: <input type = "password" name = "password" value = {data.password} onChange = {handleChange} /></label>
+                    <label> <LockIcon/> Password: <input style = {{width: '165px'}} type = "password" name = "password" value = {data.password} onChange = {handleChange} /></label>
                     <br/>
                     < br/>
                     <buttondiv>

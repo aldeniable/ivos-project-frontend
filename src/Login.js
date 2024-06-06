@@ -60,7 +60,7 @@ const Login = () => {
                 <label> <AssignmentIndIcon/> Username <input type = "text" name = "username" value = {data.username} onChange = {handleChange} /></label>
                 < br/>
                 <br />
-                <label> <LockIcon/> Password <input type = "password" name = "password" value = {data.password} onChange = {handleChange} /></label>
+                <label> <LockIcon/> Password <input style = {{width: '165px'}} type = "password" name = "password" value = {data.password} onChange = {handleChange} /></label>
                 <br/>
                 <br/>
                 <buttondiv>
