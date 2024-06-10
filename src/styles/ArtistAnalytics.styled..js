@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const ArtistAnalyticsContainer = styled.div`
    align-items: flex-start;
-   margin: 50px;
+   margin-top: 60px;
    `
 
 export const ArtistAnalyticsTitle = styled.div`
@@ -29,8 +29,8 @@ export const TableHeader = styled.th`
     padding: 10px;
     border-bottom: 2px solid #ddd;
     text-align: left;
-    font-size: ${(props) => (props.sorted ? '1.6rem' : '1.4rem')};
-    background-color: ${(props) => (props.sorted ? '#FFDEAD' : '#F5F5F5')};
+    font-size: ${(props) => (props.sorted ? '1.3rem' : '1.1rem')};
+    background-color: ${(props) => (props.sorted ? '#FFA500' : '#F5F5F5')};
     transition: background-color .6s;
     cursor: default;
     img {
@@ -39,19 +39,17 @@ export const TableHeader = styled.th`
       height: auto;
     }
     &:hover {
-      font-weight: bold;
-      color: #008080;
-      font-size: 1.6rem;
+      font-size: 1.19rem;
       transition: font-size .5s;
     }
 `
 
 export const TableRow = styled.tr`
-  font-size: ${(props) => (props.isTopTen ? '20px' : '20px')};
+  font-size: ${(props) => (props.isTopTen ? '17px' : '15px')};
   indexcell {
-    font-size: ${(props) => (props.isTopTen ? '75px' : '75px')};
+    font-size: ${(props) => (props.isTopTen ? '35px' : '35px')};
     font-weight: ${(props) => (props.isTopTen ? 'bold' : 'bold')};
-    color: ${(props) => (props.isTopTen ? '#008080' : '#008080')};
+    color: ${(props) => (props.isTopTen ? '#FF8C00' : '#FF8C00')};
   }
   smol {
     font-size: 1rem;
@@ -61,9 +59,8 @@ export const TableRow = styled.tr`
   transition: color 0.3s, font-size 0.3s;
   &:hover {
     background-color: #FFF8DC;
-    
-    font-size: ${(props) => (props.isTopTen ? '35px' : '20px')}; 
-    font-weight: bold;
+    transition :background-color .6s ease;
+    font-size: ${(props) => (props.isTopTen ? '17px' : '17px')}; 
   }
 `
 

@@ -3,12 +3,15 @@ import { PostContainer, PostInput, PostsContainer, InputContainer } from './styl
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import Textarea from '@mui/joy/Textarea';
+import Button from '@mui/material/Button';
+
 
 function getMySQLDate(date) {
   return date.toISOString().slice(0, 19).replace('T', ' ');
 }
 
-const Posts = () => {
+const Posts = ({ userIdOnProfile }) => {
 
   const [posts, setPosts] = useState([]);
   const token = localStorage.getItem('authToken');
@@ -66,7 +69,18 @@ const Posts = () => {
           const listOfPostIDs = results[1].map((like) => like.post_id);
           setLikes(listOfPostIDs  || []);
         }
-        setPosts(results[0]);
+
+        if(!userIdOnProfile){
+          setPosts(results[0]);
+        }
+        else
+        {
+          
+          const posts = results[0].filter(post => parseInt(post.userID) === parseInt(userIdOnProfile));
+          console.log(posts);
+          setPosts(posts);
+        }
+        
       } catch (error) { }
   };
   
@@ -111,20 +125,37 @@ const Posts = () => {
 
   return (
     <>
+    { !userIdOnProfile ?
+    (
       <InputContainer>
           { userID ? (
             <PostInput>
               <form onSubmit = {handleSubmit} >
-                  <textarea placeholder = 'Say something and post here...' value = {post} onChange = {(e) => setPostContent(e.target.value)} />
+
+                <Textarea
+                  color="warning"
+                  disabled={false}
+                  minRows={1}
+                  minColumns = {7}
+                  size="sm"
+                  variant="outlined"
+                  placeholder = 'Post something here'
+                  value = {post}
+                  onChange = {(e) => setPostContent(e.target.value)} />
                   <br />
-                  <buttondiv> <button type = "submit"> Post </button> </buttondiv>
+                  <buttondiv><Button variant="contained" size="small" color="warning" type="submit"> Post </Button></buttondiv>
                 </form>
             </PostInput>
           ):
           ( <PostInput><p> Log in to be able to post! </p></PostInput>)
-          }
+          }    
       </InputContainer>
-
+    )
+    :
+    (
+      <br />
+    )
+    }
       <PostsContainer>
         {posts.map((post) => (
           <PostContainer>

@@ -36,7 +36,7 @@ const Header = () => {
                         <li>
                             <buttons>
                                 <bigdiv>
-                                    <button onClick = {() => handleClick('/TopStreams')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/TopStreams' ? 'bold': 'normal'}}>  All-Time Top Streams </button>
+                                    <button onClick = {() => handleClick('/TopStreams')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/TopStreams' ? 'bold': 'normal'}}>  All-Time Streams </button>
                                     <button onClick = {() => handleClick('/TopTrending')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/TopTrending' ? 'bold': 'normal'}}>Trending Now </button>                
                                     <button onClick = {() => handleClick('/ArtistAnalytics')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/ArtistAnalytics' ? 'bold': 'normal'}}> Artist Analytics </button>
                                 </bigdiv>
@@ -52,9 +52,9 @@ const Header = () => {
                                     (   <button onClick={handleLogout}>  Log Out </button> 
                                     )}
                                     {!loggedIn ? (
-                                        <button onClick = {() => handleClick('/UserProfile')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/' ? 'bold': 'normal'}}>  My Profile </button>
+                                      <div></div>
                                     ) :
-                                    (   <button onClick={handleLogout}> My Profile </button> 
+                                    (   <button onClick = {() => handleClick('/UserProfile')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/UserProfile' ? 'bold': 'normal'}}> My Profile </button> 
                                     )}
                                     <button onClick = {() => handleClick('/AboutTheCreator')} style = {{ textDecoration: 'none', fontWeight: location.pathname === '/AboutTheCreator' ? 'bold': 'normal'}}>  About The Creator </button>
                                 </smoldiv>

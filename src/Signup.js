@@ -4,6 +4,8 @@ import LockIcon from '@mui/icons-material/Lock';
 import MoveToInboxIcon from '@mui/icons-material/MoveToInbox';
 import { useNavigate } from 'react-router-dom';
 import { AuthenticateUserContainer } from './styles/Login.styled';
+import Input from '@mui/joy/Input';
+import Button from '@mui/material/Button';
 
 const Signup = () => {
 
@@ -55,17 +57,56 @@ const Signup = () => {
         <AuthenticateUserContainer>
             <formcontainer>
                 <form onSubmit = {handleSubmit}>
-                    <label> <MoveToInboxIcon/> E-mail: <input style = {{width: '190px'}} type = "email" name = "email" value = {data.email} onChange = {handleChange} /></label>
-                    < br/>
-                    < br/>
-                    <label> <AssignmentIndIcon/> Username: <input type = "text" name = "username" value = {data.username} onChange = {handleChange} /></label>
+                    <label>
+                        <MoveToInboxIcon/>
+                        E-mail
+                        <Input
+                            color="warning"
+                            size="sm"
+                            variant="soft"
+                            style = {{width: '190px'}}
+                            type = "email"
+                            name = "email"
+                            value = {data.email}
+                            onChange = {handleChange}
+                            required
+                        />
+                    </label>
                     <br/>
-                    < br/>
-                    <label> <LockIcon/> Password: <input style = {{width: '165px'}} type = "password" name = "password" value = {data.password} onChange = {handleChange} /></label>
+                    <label>
+                        <AssignmentIndIcon/>
+                        Username
+                        <Input
+                            color="warning"
+                            size="sm"
+                            variant="soft"
+                            style = {{width: '190px'}}
+                            type = "text"
+                            name = "username"
+                            value = {data.username}
+                            onChange = {handleChange}
+                            required
+                        />
+                    </label>
                     <br/>
+                    <label>
+                        <LockIcon/>
+                        Password
+                        <Input
+                            color="warning"
+                            size="sm"
+                            variant="soft"
+                            style = {{width: '190px'}}
+                            type = "password"
+                            name = "password"
+                            value = {data.password}
+                            onChange = {handleChange}
+                            required
+                        />
+                    </label>
                     < br/>
                     <buttondiv>
-                        <button type = "submit">Sign up</button>
+                    <Button variant="plain" size="small" color="success" type = "submit"> Sign Up </Button>
                     </buttondiv>
                 </form>
                 {showStatus && (

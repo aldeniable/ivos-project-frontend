@@ -12,7 +12,7 @@ import KosmikIslandDisk from './images/kosmik.jpg';
 import Medisina from './images/medisina.jpg';
 import Pangalan from './images/pangalan.jpg';
 import NoAlbum from './images/orangeera.jpg';
-
+import Select from '@mui/material/Select';
 
 const TopStreams = () => {
 
@@ -71,7 +71,7 @@ const TopStreams = () => {
       <TopStreamsContainer>
         <TopStreamsTitle>
           <img src = {TopStreamsLogo} alt = "" />
-          <h1> Top streamed tracks </h1>
+          <h1> All-Time Streams </h1>
         </TopStreamsTitle>
         <TopStreamsFilter filterSelected = {onFilterSelected}></TopStreamsFilter>
           <Table>

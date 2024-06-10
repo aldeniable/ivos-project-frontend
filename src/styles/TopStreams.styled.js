@@ -2,23 +2,27 @@ import styled from 'styled-components'
 
 export const TopStreamsContainer = styled.div`
    align-items: flex-start;
-   margin: 50px;
+   margin-top: 60px;
    `
 
 export const TopStreamsTitle = styled.div`
     display: flex;
+
     img {
-      width: 65px;
-      height: auto;
+      width: 100px;
     }
+    align-items: center;
     h1 {
       font-size: 1.5rem;
+    }
+    dateBox {
+      font-size: 1rem; 
+      fontWeight: light;
     }
 `
 
 export const Table = styled.table`
     width: 100%;
-    margin: 10px;
     border-collapse: collapse;
 `
 export const TableHeader = styled.th`
@@ -34,9 +38,9 @@ export const TableHeader = styled.th`
     }
 `
 export const TableRow = styled.tr`
-  font-size: ${(props) => (props.isTopTen ? '20px' : 'initial')};
+  font-size: ${(props) => (props.isTopTen ? '17px' : '15px')};
   indexcell {
-    font-size: ${(props) => (props.isTopTen ? '75px' : 'initial')};
+    font-size: ${(props) => (props.isTopTen ? '45px' : 'initial')};
     font-weight: ${(props) => (props.isTopTen ? 'bold' : 'initial')};
     color: ${(props) => (props.isTopTen ? '#008080' : 'initial')};
   }
@@ -49,7 +53,7 @@ export const TableRow = styled.tr`
   &:hover {
     background-color: #FFF8DC;
     color: #008080;
-    font-size: ${(props) => (props.isTopTen ? '35px' : '20px')}; 
+    font-size: ${(props) => (props.isTopTen ? '25px' : '20px')}; 
   }
 `
 

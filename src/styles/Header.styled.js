@@ -17,9 +17,15 @@ export const ImageContainer = styled.div`
     img {
     border-radius: 50%;
     padding: .5em;
-    transition: border-radius 0.3s, width 0.3s;
     margin-left: 1em;
-    max-width: 60%;
+    max-width: 60px;
+    }
+    img:hover {
+        border-radius: 50%;
+        padding: .5em;
+        margin-left: 1em;
+        max-width: 70px;
+        transition: max-width 0.3s ease;
     }
 `
 export const TitleContainer = styled.h1`
@@ -32,7 +38,7 @@ export const TitleContainer = styled.h1`
         max-width: 100%;
     }
     h1:hover {
-        font-size: 1.8em;
+        font-size: 1.6em;
     }
 `
 
@@ -50,28 +56,35 @@ export const ListContainer = styled.ul`
     }
     bigdiv {
         color: gray;
-        background: #D2691E;
+        background: #8FBC8F;
         border-radius: 1em;
         padding: .2em;
         display:flex;
-        flex-wrap:wrap;
+        flex-wrap:wrap; 
+        margin-bottom: 4px;
     }
     meddiv {
         color: gray;
-        background: #ff8c00;
-        border-radius: 1em;
-        padding: .2em;
-        display:flex;
-        flex-wrap:wrap;
-    }
-    smoldiv {
-        color: gray;
-        font-size: .70em; 
         background: #FFD700;
         border-radius: 1em;
         padding: .2em;
         display:flex;
         flex-wrap:wrap;
+        margin-bottom: 4px;
+
+
+    }
+    smoldiv {
+        color: gray;
+        font-size: .70em; 
+        background: #ffa500;
+        border-radius: 1em;
+        padding: .2em;
+        display:flex;
+        flex-wrap:wrap;
+                margin-bottom: 4px;
+
+ 
     }
 
     button {
@@ -91,7 +104,6 @@ export const ListContainer = styled.ul`
         font-weight: bold;
         border-radius: .8em;
         transform: scale(1.1);
-        padding: .3em;
     }
     li:hover {
         color: #FFFFFF;

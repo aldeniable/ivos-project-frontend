@@ -20,9 +20,9 @@ const Timeline = () => {
             <VerticalTimelineElement
               icon = {<DateRangeIcon />}
               date = {timeline.date}
-              contentStyle={{ background: '#F0E68C', color: '#000000' }}
-              contentArrowStyle={{ borderRight: '7px solid  #F0E68C' }}
-              iconStyle={{ background: '#F0E68C', color: '#000000' }}
+              contentStyle={{ background: '#FFD700', color: '#000000' }}
+              contentArrowStyle={{ borderRight: '7px solid  #FFD700' }}
+              iconStyle={{ background: '#8FBC8F', color: '#000000' }}
             >
               <h3 className="vertical-timeline-element-title"> {timeline.title} </h3>
               <p className="vertical-timeline-element-subtitle"> {timeline.deets} </p>

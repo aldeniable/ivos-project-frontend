@@ -76,7 +76,7 @@ const ArtistAnalytics = () => {
             <TableRow>
               <TableHeader> </TableHeader>
               <TableHeader> </TableHeader>
-              <TableHeader onMouseEnter={handleHover} onMouseLeave = {handleLeave} onClick = {() => sorting("consistent_fans_score")} sorted = {clickedColumn === "consistent_fans_score"}> Stream Consistency <img src = {sortlogo} alt = "" /> <img src = {infologo} alt = "" />  
+              <TableHeader onMouseEnter={handleHover} onMouseLeave = {handleLeave} onClick = {() => sorting("consistent_fans_score")} sorted = {clickedColumn === "consistent_fans_score"}> Stream Consistency <img src = {sortlogo} alt = "" />   
               {isHovered && (
                 <Modal>
                   <text>
@@ -98,7 +98,7 @@ const ArtistAnalytics = () => {
               <TableRow key={artist.artist_id}>
                 <TableCell><indexcell></indexcell></TableCell>
                 <TableCell><div><img src = {getArtistImage(artist.artist_name)} alt=""/> <div> {artist.artist_name} </div></div></TableCell>
-                <TableCell> # {artist.consistent_fans_score} </TableCell>
+                <TableCell><indexcell> # {artist.consistent_fans_score}</indexcell> </TableCell>
                 <TableCell> {artist.total_streams.toLocaleString()} </TableCell>
                 <TableCell> {artist.song_count} </TableCell>
                 <TableCell> {artist.onemil} tracks</TableCell>

@@ -5,6 +5,8 @@ import LockIcon from '@mui/icons-material/Lock';
 import MoveToInboxIcon from '@mui/icons-material/MoveToInbox';
 import { useNavigate } from 'react-router-dom';
 import { AuthenticateUserContainer } from './styles/Login.styled';
+import Input from '@mui/joy/Input';
+import Button from '@mui/material/Button';
 
 const Login = () => {
 
@@ -57,14 +59,40 @@ const Login = () => {
         <AuthenticateUserContainer>
             <formcontainer>
             <form onSubmit = {handleSubmit}>
-                <label> <AssignmentIndIcon/> Username <input type = "text" name = "username" value = {data.username} onChange = {handleChange} /></label>
-                < br/>
-                <br />
-                <label> <LockIcon/> Password <input style = {{width: '165px'}} type = "password" name = "password" value = {data.password} onChange = {handleChange} /></label>
+                <label>
+                    <AssignmentIndIcon/>
+                    Username
+                    <Input
+                        color="warning"
+                        size="sm"
+                        variant="soft"
+                        style = {{width: '190px'}}
+                        type = "text"
+                        name = "username"
+                        value = {data.username}
+                        onChange = {handleChange}
+                        required
+                    />
+                </label>
                 <br/>
+                <label>
+                    <LockIcon/>
+                    Password
+                    <Input
+                        color="warning"
+                        size="sm"
+                        variant="soft"
+                        style = {{width: '190px'}}
+                        type = "password"s
+                        name = "password"
+                        value = {data.email}
+                        onChange = {handleChange}
+                        required
+                    />
+                </label>
                 <br/>
                 <buttondiv>
-                    <button type = "submit">Login</button>
+                <Button variant="plain" size="small" color="success" type = "submit"> Log In </Button>
                 </buttondiv>
             </form>
             {showStatus && (

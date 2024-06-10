@@ -6,7 +6,7 @@ export const ParagraphContainer = styled.div`
    font-size: 1.3rem;
    text-align: justify;
    font-color: 'dark gray';
-    max-width:1000px;
+    max-width: 1000px;
    p {
         padding: 50px;
    }
@@ -20,7 +20,8 @@ export const ParagraphContainer = styled.div`
    `
 
    export const ImageContainer = styled.div`
-   padding: 60px;
+   margin-top: 30px;
+   padding: 20px;
         img {
         max-width: 400px;
         }
