@@ -7,8 +7,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import EmailIcon from '@mui/icons-material/Email';
 import AnimationIcon from '@mui/icons-material/Animation';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
-import { Menu } from '@mui/material';
-import { MenuBook } from '@material-ui/icons';
+
 function AboutTheCreator() {
     return (
         <>
