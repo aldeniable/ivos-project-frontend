@@ -70,8 +70,8 @@ const TopTrending = () => {
     const fetchData = async () => {
       try {
         const [dataDates, dataSingles] = await Promise.all([
-          fetch('http://127.0.0.1:8000/topTrendingDates/').then(res => res.json()),
-          fetch('http://127.0.0.1:8000/topTrending/').then(res => res.json())
+          fetch('https://ivos-app-api.onrender.com/topTrendingDates/').then(res => res.json()),
+          fetch('https://ivos-app-api.onrender.com/topTrending/').then(res => res.json())
         ]);
         setTrendingDates(dataDates);
         setSingles(dataSingles);

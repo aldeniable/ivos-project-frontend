@@ -58,7 +58,7 @@ const ArtistAnalytics = () => {
   }
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/artistAnalytics/')
+    fetch('https://ivos-app-api.onrender.com/artistAnalytics/')
       .then( res => { return res.json(); } )
       .then( data => { setArtists (data) } );
   }, []

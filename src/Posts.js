@@ -58,10 +58,10 @@ const Posts = ({ userIdOnProfile }) => {
   const fetchData = async () => {
       try {
         const API_calls = [
-          fetch('http://127.0.0.1:8000/posts/').then(res => res.json())
+          fetch('https://ivos-app-api.onrender.com/posts/').then(res => res.json())
         ];
         if (userID) {
-          API_calls.push(fetch(`http://127.0.0.1:8000/didLike/${userID}`).then(res => res.json()))
+          API_calls.push(fetch(`https://ivos-app-api.onrender.com/didLike/${userID}`).then(res => res.json()))
         }
 
         const results = await Promise.all(API_calls);
@@ -91,7 +91,7 @@ const Posts = ({ userIdOnProfile }) => {
   const handleLiking = async (e, postID) => {
     e.preventDefault();
     try{        
-      const response = await fetch(`http://127.0.0.1:8000/likePost/${userID}/${postID}`, {method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}});
+      const response = await fetch(`https://ivos-app-api.onrender.com/likePost/${userID}/${postID}`, {method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}});
       await fetchData();
     }catch (error) { }
   }
@@ -99,7 +99,7 @@ const Posts = ({ userIdOnProfile }) => {
   const handleUnliking = async (e, postID) => {
     e.preventDefault();
     try{        
-      const response = await fetch(`http://127.0.0.1:8000/unlikePost/${userID}/${postID}`, {method: 'DELETE', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}});
+      const response = await fetch(`https://ivos-app-api.onrender.com/unlikePost/${userID}/${postID}`, {method: 'DELETE', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}});
       await fetchData();
     }catch (error) { }
   }
@@ -111,9 +111,9 @@ const Posts = ({ userIdOnProfile }) => {
 
     try {
       const data = { username: username, userID: userID, datePosted: datePosted, post: post }
-      const response = await fetch('http://127.0.0.1:8000/insertPost/', {method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}, body: JSON.stringify(data)});
+      const response = await fetch('https://ivos-app-api.onrender.com/insertPost/', {method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}, body: JSON.stringify(data)});
       if (response.ok) {
-        fetch('http://127.0.0.1:8000/posts/')
+        fetch('https://ivos-app-api.onrender.com/posts/')
           .then((res) => res.json())
           .then((data) => {
             setPosts(data);

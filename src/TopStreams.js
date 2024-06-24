@@ -61,7 +61,7 @@ const TopStreams = () => {
   }
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/topStreams/')
+    fetch('https://ivos-app-api.onrender.com/topStreams/')
       .then( res => { return res.json(); } )
       .then( data => { setSingles (data) } );
   }, [] );
