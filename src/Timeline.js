@@ -8,7 +8,7 @@ const Timeline = () => {
   const [timelines, setTimelines] = useState([]);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/timeline/')
+    fetch('https://ivos-app-api.onrender.com/timeline/')
       .then( res => { return res.json(); } )
       .then( data => { setTimelines (data) } );
   }, [] );
