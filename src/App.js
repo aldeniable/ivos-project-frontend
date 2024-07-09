@@ -20,6 +20,7 @@ const App = () => {
       <Wrapper>
         <Header />
             <Routes>
+              <Route path="/" element={<Navigate to="/TopStreams" replace />} />
               <Route path="/TopStreams" element={<TopStreams />} />
               <Route path="/TopTrending" element={<TopTrending />} />
               <Route path="/ArtistAnalytics" element={<ArtistAnalytics />} />
