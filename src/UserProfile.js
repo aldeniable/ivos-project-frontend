@@ -4,6 +4,7 @@ import FaceIcon from '@mui/icons-material/Face';
 import Button from '@mui/material/Button';
 import Input from '@mui/joy/Input';
 import Posts from './Posts';
+import { ClipLoader } from 'react-spinners';
 
 const UserProfile = () => {
 
@@ -12,6 +13,7 @@ const UserProfile = () => {
     const token = localStorage.getItem('authToken');
     const userID = localStorage.getItem('userID');
     const username = localStorage.getItem('username');
+    const [loading, setLoading] = useState(true);
 
     const [editedProfile, setEditedProfile] = useState({
       email: '',
@@ -30,9 +32,9 @@ const UserProfile = () => {
     const fetchData = async () => {
         try
         {
-            fetch(`https://ivos-app-api.onrender.com/userProfile/${userID}`)
+            fetch(`http://ivos-app-api.onrender.com/userProfile/${userID}`)
             .then(res => res.json())
-            .then(data => { setProfile(data)})
+            .then(data => { setProfile(data);setLoading(false);})
         }catch (error) { }
     };
 
@@ -74,7 +76,7 @@ const UserProfile = () => {
       try {
         const data = { id : userID, username: username, ...editedProfile }
         console.log(data.id);
-        const response = await fetch('https://ivos-app-api.onrender.com/updateUserProfile/', {method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}, body: JSON.stringify(data)});
+        const response = await fetch('http://ivos-app-api.onrender.com/updateUserProfile/', {method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}, body: JSON.stringify(data)});
         if (response.ok) {
           fetchData();
           setEditMode(false);
@@ -89,7 +91,7 @@ const UserProfile = () => {
           { !editMode ? (
              
              profile.map((prof) => (
-                <div key={profile.id}>
+                <div key = {profile.id}>
                   <HeaderContainer>
                     <FaceIcon /> <h1>Spader Profile </h1>
                   </HeaderContainer>
@@ -114,8 +116,6 @@ const UserProfile = () => {
                     <Button onClick = {handleUpdateButton} variant="contained" size="small" color="warning" type="submit"> Update Profile </Button>
                   </buttondiv>   
                   </ProfileContainer>
-
-
             <br/>
             <br/>
             <br/>

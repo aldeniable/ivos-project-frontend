@@ -5,7 +5,7 @@ import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Textarea from '@mui/joy/Textarea';
 import Button from '@mui/material/Button';
-
+import { ClipLoader } from 'react-spinners';
 
 function getMySQLDate(date) {
   return date.toISOString().slice(0, 19).replace('T', ' ');
@@ -19,6 +19,7 @@ const Posts = ({ userIdOnProfile }) => {
   const username = localStorage.getItem('username')
   const [post, setPostContent] = useState('');
   const [likes, setLikes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const now = new Date();
   const formatDate = (dateString) => {
@@ -58,10 +59,10 @@ const Posts = ({ userIdOnProfile }) => {
   const fetchData = async () => {
       try {
         const API_calls = [
-          fetch('https://ivos-app-api.onrender.com/posts/').then(res => res.json())
+          fetch('http://ivos-app-api.onrender.com0/posts/').then(res => res.json())
         ];
         if (userID) {
-          API_calls.push(fetch(`https://ivos-app-api.onrender.com/didLike/${userID}`).then(res => res.json()))
+          API_calls.push(fetch(`http://ivos-app-api.onrender.com0/didLike/${userID}`).then(res => res.json()))
         }
 
         const results = await Promise.all(API_calls);
@@ -91,7 +92,7 @@ const Posts = ({ userIdOnProfile }) => {
   const handleLiking = async (e, postID) => {
     e.preventDefault();
     try{        
-      const response = await fetch(`https://ivos-app-api.onrender.com/likePost/${userID}/${postID}`, {method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}});
+      const response = await fetch(`http://ivos-app-api.onrender.com/likePost/${userID}/${postID}`, {method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}});
       await fetchData();
     }catch (error) { }
   }
@@ -99,7 +100,7 @@ const Posts = ({ userIdOnProfile }) => {
   const handleUnliking = async (e, postID) => {
     e.preventDefault();
     try{        
-      const response = await fetch(`https://ivos-app-api.onrender.com/unlikePost/${userID}/${postID}`, {method: 'DELETE', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}});
+      const response = await fetch(`http://ivos-app-api.onrender.com/unlikePost/${userID}/${postID}`, {method: 'DELETE', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}});
       await fetchData();
     }catch (error) { }
   }
@@ -111,12 +112,13 @@ const Posts = ({ userIdOnProfile }) => {
 
     try {
       const data = { username: username, userID: userID, datePosted: datePosted, post: post }
-      const response = await fetch('https://ivos-app-api.onrender.com/insertPost/', {method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}, body: JSON.stringify(data)});
+      const response = await fetch('http://ivos-app-api.onrender.com/insertPost/', {method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}, body: JSON.stringify(data)});
       if (response.ok) {
-        fetch('https://ivos-app-api.onrender.com/posts/')
+        fetch('http://ivos-app.api.onrender.com/posts/')
           .then((res) => res.json())
           .then((data) => {
             setPosts(data);
+            setLoading(false);
           })
         .catch((err) => {} );
       }
@@ -157,26 +159,38 @@ const Posts = ({ userIdOnProfile }) => {
     )
     }
       <PostsContainer>
-        {posts.map((post) => (
-          <PostContainer>
-            {post.post}
-            <br/>
-            <br/>
-            <br/>
-            <user> {post.username}   |    {formatTimeDifference(new Date(post.datePosted))} </user>
-            <br/>
-            {userID ? (
-              (likes.includes(post.idPost) ?
-                (<FavoriteIcon onClick = {(e) => handleUnliking(e, post.idPost)}/>) 
-                : 
-                (<FavoriteBorderIcon onClick =  {(e) => handleLiking(e, post.idPost)}/>))
-              )
-              :
-              (<FavoriteTwoToneIcon/>)
-            }
-            <likes> {post.like_count} </likes>
-          </PostContainer>
-        ))}
+        { loading ?
+          (
+            <div className = "loading-spinner">
+              <ClipLoader size = {50} color = {"#123abc"} loading = {loading} />
+            </div>
+          )
+          :
+          (
+            posts.map((post) => (
+              <PostContainer>
+                {post.post}
+                <br/>
+                <br/>
+                <br/>
+                <user> {post.username}   |    {formatTimeDifference(new Date(post.datePosted))} </user>
+                <br/>
+                {userID ? (
+                  (likes.includes(post.idPost) ?
+                    (<FavoriteIcon onClick = {(e) => handleUnliking(e, post.idPost)}/>) 
+                    : 
+                    (<FavoriteBorderIcon onClick =  {(e) => handleLiking(e, post.idPost)}/>))
+                  )
+                  :
+                  (<FavoriteTwoToneIcon/>)
+                }
+                <likes> {post.like_count} </likes>
+              </PostContainer>
+            ))
+          )
+        }
+
+
       </PostsContainer>
     </>
   );

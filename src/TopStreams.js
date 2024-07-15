@@ -13,11 +13,13 @@ import Medisina from './images/medisina.jpg';
 import Pangalan from './images/pangalan.jpg';
 import NoAlbum from './images/orangeera.jpg';
 import Select from '@mui/material/Select';
+import { ClipLoader } from 'react-spinners';
 
 const TopStreams = () => {
 
   const [singles,setSingles] = useState([]);
   const [filterTxtValue, setfilterTxtValue] = useState('all');
+  const [loading, setLoading] = useState(true);
 
   function onFilterSelected (filterValue)  {
     setfilterTxtValue(filterValue);
@@ -61,9 +63,9 @@ const TopStreams = () => {
   }
 
   useEffect(() => {
-    fetch('https://ivos-app-api.onrender.com/topStreams/')
+    fetch('http://ivos-app-api.onrender.com/topStreams/')
       .then( res => { return res.json(); } )
-      .then( data => { setSingles (data) } );
+      .then( data => { setSingles (data); setLoading(false); } );
   }, [] );
 
   return (
@@ -85,15 +87,25 @@ const TopStreams = () => {
               </TableRow>
             </thead>
             <tbody>
-              {filteredSingles.map((single, index) => (
-                <TableRow key={single.singles_stats_id} isTopTen={index < 10}>
-                  <TableCell><indexcell> {index + 1} </indexcell></TableCell>
-                  <TableCell><img src = {getAlbumImage(single.album_name)} alt=""/> {single.title} </TableCell>
-                  <TableCell> {single.max_fetch_data_streams.toLocaleString()}</TableCell>
-                  <TableCell> {single.artist_name}</TableCell>
-                  <TableCell> {single.album_name}</TableCell>
-                </TableRow>
-              ))}
+              { loading ?
+                (
+                  <div className = "loading-spinner">
+                    <ClipLoader size = {50} color = {"#123abc"} loading = {loading} />
+                  </div>
+                )
+                :
+                (
+                  filteredSingles.map((single, index) => (
+                    <TableRow key={single.singles_stats_id} isTopTen={index < 10}>
+                      <TableCell><indexcell> {index + 1} </indexcell></TableCell>
+                      <TableCell><img src = {getAlbumImage(single.album_name)} alt=""/> {single.title} </TableCell>
+                      <TableCell> {single.max_fetch_data_streams.toLocaleString()}</TableCell>
+                      <TableCell> {single.artist_name}</TableCell>
+                      <TableCell> {single.album_name}</TableCell>
+                    </TableRow>
+                  ))
+                )
+              }
             </tbody>
           </Table>
       </TopStreamsContainer>

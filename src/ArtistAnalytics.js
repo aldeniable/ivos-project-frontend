@@ -7,6 +7,7 @@ import blastersilonga from './images/blastersilonga.jpg';
 import artistlogo from './images/artist.png';
 import sortlogo from './images/sort.png';
 import infologo from './images/INFO.png';
+import { ClipLoader } from 'react-spinners';
 
 const ArtistAnalytics = () => {
 
@@ -14,6 +15,7 @@ const ArtistAnalytics = () => {
   const [order, setOrder] = useState("asc");
   const [clickedColumn, setClickedColumn] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const handleHover = () => {
     setIsHovered(true);
@@ -58,9 +60,9 @@ const ArtistAnalytics = () => {
   }
 
   useEffect(() => {
-    fetch('https://ivos-app-api.onrender.com/artistAnalytics/')
+    fetch('http://ivos-app-api.onrender.com/artistAnalytics/')
       .then( res => { return res.json(); } )
-      .then( data => { setArtists (data) } );
+      .then( data => { setArtists (data); setLoading(false); } );
   }, []
   );
 
@@ -94,19 +96,30 @@ const ArtistAnalytics = () => {
             </TableRow>
           </thead>
           <tbody>
-            {artist.map((artist, index) => (
-              <TableRow key={artist.artist_id}>
-                <TableCell><indexcell></indexcell></TableCell>
-                <TableCell><div><img src = {getArtistImage(artist.artist_name)} alt=""/> <div> {artist.artist_name} </div></div></TableCell>
-                <TableCell><indexcell> # {artist.consistent_fans_score}</indexcell> </TableCell>
-                <TableCell> {artist.total_streams.toLocaleString()} </TableCell>
-                <TableCell> {artist.song_count} </TableCell>
-                <TableCell> {artist.onemil} tracks</TableCell>
-                <TableCell> {artist.tenmil} tracks</TableCell>
-                <TableCell> {artist.fiftymil} tracks</TableCell>
-                <TableCell> {artist.hundredmil} tracks</TableCell>
-             </TableRow>
-            ))}
+            { loading ? 
+              (
+                <div className = "loading-spinner">
+                <ClipLoader size = {50} color = {"#123abc"} loading = {loading} />
+                </div>
+              )
+              :
+              (
+                artist.map((artist, index) => (
+                  <TableRow key={artist.artist_id}>
+                    <TableCell><indexcell></indexcell></TableCell>
+                    <TableCell><div><img src = {getArtistImage(artist.artist_name)} alt=""/> <div> {artist.artist_name} </div></div></TableCell>
+                    <TableCell><indexcell> # {artist.consistent_fans_score}</indexcell> </TableCell>
+                    <TableCell> {artist.total_streams.toLocaleString()} </TableCell>
+                    <TableCell> {artist.song_count} </TableCell>
+                    <TableCell> {artist.onemil} tracks</TableCell>
+                    <TableCell> {artist.tenmil} tracks</TableCell>
+                    <TableCell> {artist.fiftymil} tracks</TableCell>
+                    <TableCell> {artist.hundredmil} tracks</TableCell>
+                 </TableRow>
+                ))
+              )
+            }
+
           </tbody>
         </Table>
       </ArtistAnalyticsContainer>

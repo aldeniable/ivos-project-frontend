@@ -12,12 +12,14 @@ import KosmikIslandDisk from './images/kosmik.jpg';
 import Medisina from './images/medisina.jpg';
 import Pangalan from './images/pangalan.jpg';
 import NoAlbum from './images/orangeera.jpg';
+import { ClipLoader } from 'react-spinners';
 
 const TopTrending = () => {
 
   const [singles,setSingles] = useState([]);
   const [trendingdates,setTrendingDates] = useState([]);
   const [filterTxtValue, setfilterTxtValue] = useState('all');
+  const [loading, setLoading] = useState(true);
 
   function onFilterSelected (filterValue)  {
     setfilterTxtValue(filterValue);
@@ -70,9 +72,10 @@ const TopTrending = () => {
     const fetchData = async () => {
       try {
         const [dataDates, dataSingles] = await Promise.all([
-          fetch('https://ivos-app-api.onrender.com/topTrendingDates/').then(res => res.json()),
-          fetch('https://ivos-app-api.onrender.com/topTrending/').then(res => res.json())
+          fetch('http://ivos-app-api.onrender.com/topTrendingDates/').then(res => res.json()),
+          fetch('http:/ivos-app-api.onrender.com/topTrending/').then(res => res.json())
         ]);
+        setLoading(false);
         setTrendingDates(dataDates);
         setSingles(dataSingles);
       } catch (error) { }
@@ -101,15 +104,25 @@ const TopTrending = () => {
             </TableRow>
           </thead>
           <tbody>
-            {filteredSingles.map((single, index) => (
-              <TableRow key={single.singles_stats_id} isTopTen={index < 10}>
-                <TableCell><indexcell> {index + 1} </indexcell></TableCell>
-                <TableCell><img src = {getAlbumImage(single.album_name)} alt=""/> {single.title} </TableCell>
-                <TableCell><plusstreams> + {single.difference_streams.toLocaleString()} </plusstreams></TableCell>
-                <TableCell> {single.artist_name} </TableCell>
-                <TableCell> {single.album_name} </TableCell>
-              </TableRow>
-            ))}
+            { loading ? 
+              (
+                <div className = "loading-spinner">
+                  <ClipLoader size = {50} color = {"#123abc"} loading = {loading} />
+                </div>
+              )
+              :
+              (
+                filteredSingles.map((single, index) => (
+                  <TableRow key={single.singles_stats_id} isTopTen={index < 10}>
+                    <TableCell><indexcell> {index + 1} </indexcell></TableCell>
+                    <TableCell><img src = {getAlbumImage(single.album_name)} alt=""/> {single.title} </TableCell>
+                    <TableCell><plusstreams> + {single.difference_streams.toLocaleString()} </plusstreams></TableCell>
+                    <TableCell> {single.artist_name} </TableCell>
+                    <TableCell> {single.album_name} </TableCell>
+                  </TableRow>
+                ))
+              )  
+          }
           </tbody>
         </Table>
       </TopStreamsContainer>

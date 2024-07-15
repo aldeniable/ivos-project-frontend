@@ -6,11 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { AuthenticateUserContainer } from './styles/Login.styled';
 import Input from '@mui/joy/Input';
 import Button from '@mui/material/Button';
+import { ClipLoader } from 'react-spinners';
 
 const Signup = () => {
 
     const [showStatus, setShowStatus] = useState(false);
     const [usernameStatus, setUsernameStatus] = useState('');
+    const [loading, setLoading] = useState(true);
     const navigateTo = useNavigate();
     
     const [data, setData] = useState( {
@@ -31,8 +33,9 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://ivos-app-api.onrender.com/signup/', {method: 'POST', headers: { 'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+            const response = await fetch('http://ivos-app-api.onrender.com/signup/', {method: 'POST', headers: { 'Content-Type': 'application/json'}, body: JSON.stringify(data)});
             if (response.ok) {
+                setLoading(false);
                 const { user } = await response.json();
                 const token = response.token;
                 localStorage.setItem('authToken', token);
@@ -106,13 +109,21 @@ const Signup = () => {
                     </label>
                     < br/>
                     <buttondiv>
-                    <Button variant="plain" size="small" color="success" type = "submit"> Sign Up </Button>
+                    <Button variant="plain" size="small" color="success" type = "submit" > Sign Up </Button>
                     </buttondiv>
                 </form>
                 {showStatus && (
+                loading ?
+                (
+                    <div className = "loading-spinner">
+                        <ClipLoader size = {50} color = {"#123abc"} loading = {loading} />
+                    </div>
+                ):
+                (
                     <div>
                         <p> {usernameStatus} </p>
                     </div>
+                )
                 )}
             </formcontainer>
         </AuthenticateUserContainer>

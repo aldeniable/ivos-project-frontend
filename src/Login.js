@@ -7,12 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import { AuthenticateUserContainer } from './styles/Login.styled';
 import Input from '@mui/joy/Input';
 import Button from '@mui/material/Button';
+import { ClipLoader } from 'react-spinners';
 
 const Login = () => {
 
     const [showStatus, setShowStatus] = useState(false);
     const [usernameStatus, setUsernameStatus] = useState('');
     const navigateTo = useNavigate();
+    const [loading, setLoading] = useState(true);
 
     const [data, setData] = useState( {
         username: '',
@@ -31,21 +33,20 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://ivos-app-api.onrender.com/login/', {method: 'POST', headers: { 'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+            const response = await fetch('http://ivos-app-api.onrender.com/login/', {method: 'POST', headers: { 'Content-Type': 'application/json'}, body: JSON.stringify(data)});
             if(response.ok){
+                setLoading(false);
                 const responseData = await response.json();
                 const token = responseData.token;
                 const user = responseData.user; 
                 localStorage.setItem('authToken', token);
                 localStorage.setItem('userID', user["id"]);
                 localStorage.setItem('username', user["username"]);
-                setShowStatus(true);
                 setUsernameStatus("Login successful for " + user["username"] + "!");
                 setTimeout(() => {
                     navigateTo('/Posts');
                 }, 1000);
             }else{
-                setShowStatus(true);
                 setUsernameStatus("Login failed. Try again!");
                 setTimeout(() => {
                     navigateTo('/Login');
@@ -92,13 +93,21 @@ const Login = () => {
                 </label>
                 <br/>
                 <buttondiv>
-                <Button variant="plain" size="small" color="success" type = "submit"> Log In </Button>
+                <Button variant="plain" size="small" color="success" type = "submit" > Log In </Button>
                 </buttondiv>
             </form>
             {showStatus && (
-                <div>
-                    <p> {usernameStatus} </p>
-                </div>
+                loading ?
+                (
+                    <div className = "loading-spinner">
+                        <ClipLoader size = {50} color = {"#123abc"} loading = {loading} />
+                    </div>
+                ):
+                (
+                    <div>
+                        <p> {usernameStatus} </p>
+                    </div>
+                )
             )}
             </formcontainer>
         </AuthenticateUserContainer>
