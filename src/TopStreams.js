@@ -63,7 +63,7 @@ const TopStreams = () => {
   }
 
   useEffect(() => {
-    fetch('http://ivos-app-api.onrender.com/topStreams/')
+    fetch('https://ivos-app-api.onrender.com/topStreams/')
       .then( res => { return res.json(); } )
       .then( data => { setSingles (data); setLoading(false); } );
   }, [] );

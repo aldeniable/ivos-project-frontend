@@ -72,8 +72,8 @@ const TopTrending = () => {
     const fetchData = async () => {
       try {
         const [dataDates, dataSingles] = await Promise.all([
-          fetch('http://ivos-app-api.onrender.com/topTrendingDates/').then(res => res.json()),
-          fetch('http:/ivos-app-api.onrender.com/topTrending/').then(res => res.json())
+          fetch('https://ivos-app-api.onrender.com/topTrendingDates/').then(res => res.json()),
+          fetch('https://ivos-app-api.onrender.com/topTrending/').then(res => res.json())
         ]);
         setLoading(false);
         setTrendingDates(dataDates);
@@ -116,7 +116,7 @@ const TopTrending = () => {
                   <TableRow key={single.singles_stats_id} isTopTen={index < 10}>
                     <TableCell><indexcell> {index + 1} </indexcell></TableCell>
                     <TableCell><img src = {getAlbumImage(single.album_name)} alt=""/> {single.title} </TableCell>
-                    <TableCell><plusstreams> + {single.difference_streams.toLocaleString()} </plusstreams></TableCell>
+                    <TableCell><plusstreams> + {single.difference_streams ? single.difference_streams.toLocaleString() : '0'} </plusstreams></TableCell>
                     <TableCell> {single.artist_name} </TableCell>
                     <TableCell> {single.album_name} </TableCell>
                   </TableRow>

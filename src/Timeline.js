@@ -10,7 +10,7 @@ const Timeline = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://ivos-app-api.onrender.com/timeline/')
+    fetch('https://ivos-app-api.onrender.com/timeline/')
       .then( res => { return res.json(); } )
       .then( data => { setTimelines (data); setLoading(false); } );
   }, [] );

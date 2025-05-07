@@ -92,7 +92,7 @@ const Posts = ({ userIdOnProfile }) => {
   const handleLiking = async (e, postID) => {
     e.preventDefault();
     try{        
-      const response = await fetch(`http://ivos-app-api.onrender.com/likePost/${userID}/${postID}`, {method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}});
+      const response = await fetch(`https://ivos-app-api.onrender.com/likePost/${userID}/${postID}`, {method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}});
       await fetchData();
     }catch (error) { }
   }
@@ -100,7 +100,7 @@ const Posts = ({ userIdOnProfile }) => {
   const handleUnliking = async (e, postID) => {
     e.preventDefault();
     try{        
-      const response = await fetch(`http://ivos-app-api.onrender.com/unlikePost/${userID}/${postID}`, {method: 'DELETE', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}});
+      const response = await fetch(`https://ivos-app-api.onrender.com/unlikePost/${userID}/${postID}`, {method: 'DELETE', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}});
       await fetchData();
     }catch (error) { }
   }
@@ -112,9 +112,9 @@ const Posts = ({ userIdOnProfile }) => {
 
     try {
       const data = { username: username, userID: userID, datePosted: datePosted, post: post }
-      const response = await fetch('http://ivos-app-api.onrender.com/insertPost/', {method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}, body: JSON.stringify(data)});
+      const response = await fetch('https://ivos-app-api.onrender.com/insertPost/', {method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization':`Token ${token}`}, body: JSON.stringify(data)});
       if (response.ok) {
-        fetch('http://ivos-app.api.onrender.com/posts/')
+        fetch('https://ivos-app-api.onrender.com/posts/')
           .then((res) => res.json())
           .then((data) => {
             setPosts(data);

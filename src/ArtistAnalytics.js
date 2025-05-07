@@ -60,7 +60,7 @@ const ArtistAnalytics = () => {
   }
 
   useEffect(() => {
-    fetch('http://ivos-app-api.onrender.com/artistAnalytics/')
+    fetch('https://ivos-app-api.onrender.com/artistAnalytics/')
       .then( res => { return res.json(); } )
       .then( data => { setArtists (data); setLoading(false); } );
   }, []
